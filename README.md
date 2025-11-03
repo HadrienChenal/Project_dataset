@@ -1,28 +1,28 @@
-User Guide
+# User Guide
 
 une section User Guide qui fournit les instructions pour déployer et utiliser votre dashboard sur une autre machine ;
 
 
-Data 
+# Data 
 
-hotels.csv : 
+## hotels.csv : 
 
-reviews.csv :
+## reviews.csv :
 
-users.csv :
+## users.csv :
 
 
 une section Data qui renseigne sur les données utilisées ;
 
-Developper Guide
+# Developper Guide
 
 une section Developer Guide qui renseigne sur l’architecture du code et qui permet en particulier d’ajouter simplement une page ou un graphique ;
 
-Rapport d’Analyse
+# Rapport d’Analyse
 
 une section Rapport d'analyse qui met en avant les principales conclusions extraites des données ;
 
-Copyright
+# Copyright
 
 une section Copyright qui atteste de l’originalité du code fourni. Par exemple :
 
