@@ -5,11 +5,11 @@ une section User Guide qui fournit les instructions pour déployer et utiliser v
 
 # Data 
 
-## hotels.csv : 
+### hotels.csv : 
 
-## reviews.csv :
+### reviews.csv :
 
-## users.csv :
+### users.csv :
 
 
 une section Data qui renseigne sur les données utilisées ;
