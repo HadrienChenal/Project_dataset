@@ -1,3 +1,4 @@
+"""
 import pandas as pd
 import kagglehub
 import os
@@ -15,3 +16,5 @@ for csv_file in csv_files:
     dfs[csv_file] = pd.read_csv(csv_path)
     print(f"\n--- Aperçu de {csv_file} ---")
     print(dfs[csv_file].head())
+
+"""
