@@ -1,4 +1,3 @@
-"""
 import pandas as pd
 import kagglehub
 import os
@@ -17,4 +16,3 @@ for csv_file in csv_files:
     print(f"\n--- Aperçu de {csv_file} ---")
     print(dfs[csv_file].head())
 
-"""
