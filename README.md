@@ -1,5 +1,6 @@
 # User Guide
 
+<<<<<<< HEAD
 une section User Guide qui fournit les instructions pour déployer et utiliser votre dashboard sur une autre machine ;
 
 
@@ -31,3 +32,26 @@ je déclare sur l’honneur que le code fourni a été produit par moi/nous mêm
 pour chaque ligne (ou groupe de lignes) empruntée, donner la référence de la source et une explication de la syntaxe utilisée ;
 
 toute ligne non déclarée ci dessus est réputée être produite par l’auteur (ou les auteurs) du projet. L’absence ou l’omission de déclaration sera considéré comme du plagiat.
+=======
+*(Décris ici comment déployer et utiliser ton dashboard sur une autre machine : installation, dépendances, lancement, etc.)*
+
+
+# Data
+
+*(Explique ici les données utilisées : sources, structure, prétraitement, localisation des fichiers, etc.)*
+
+
+# Developer Guide
+
+*(Décris ici l’architecture du code, les dossiers principaux, et la procédure pour ajouter une page ou un graphique au dashboard.)*
+
+
+# Rapport d'analyse
+
+*(Présente ici les principales conclusions issues de ton analyse de données : tendances, corrélations, résultats clés, etc.)*
+
+
+# Copyright
+
+*(Indique ici que le code est original, éventuellement sous quelle licence il est publié, et à qui il appartient.)*
+>>>>>>> f72d9cf9ec7ab9f0b2706d54fdd601d1d7f7c66e
