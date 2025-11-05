@@ -6,9 +6,6 @@ def tracer_histogramme_notes(dataframes: dict[str, pd.DataFrame]) -> None:
     """
     Trace un histogramme de la répartition des notes globales des hôtels.
     """
-    import pandas as pd
-    import matplotlib.pyplot as plt
-
     # Clé correcte pour accéder aux reviews
     df_reviews = dataframes.get("reviews.csv")
     if df_reviews is None:
