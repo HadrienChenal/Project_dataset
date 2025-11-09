@@ -1,35 +1,25 @@
 import os
 import pandas as pd
-import kagglehub # type: ignore
-from datetime import datetime
-import shutil
+from .common_functions import (
+    KAGGLE_MODEL_SLUG,
+    CLEAN_DATA_PATH,
+    DATA_FILES,
+    ensure_directories,
+    telecharger_dataset
+)
 
-## Constantes de chemins et configurations ##
-
-PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-# Définit des chemins absolus
-DATA_DIR = os.path.join(PROJECT_ROOT, "data")
-RAW_DATA_PATH = os.path.join(DATA_DIR, "raw")
-CLEAN_DATA_PATH = os.path.join(DATA_DIR, "cleaned")
-
-KAGGLE_MODEL_SLUG = "alperenmyung/international-hotel-booking-analytics"
-DATA_FILES = ["hotels.csv", "users.csv", "reviews.csv"]
-
-#############################################
-
-def ensure_directories() -> None:
-    """
-    Crée les répertoires de sortie.
-    """
-    os.makedirs(RAW_DATA_PATH, exist_ok=True)
-    os.makedirs(CLEAN_DATA_PATH, exist_ok=True)
+####### CLEANING FUNCTIONS ########
 
 def clean_hotels(df: pd.DataFrame) -> pd.DataFrame:
     """
-    Nettoyage spécifique du tableau hotels.csv
+    Nettoyage spécifique du tableau hotels.csv.
+    param df: DataFrame brut à nettoyer.
+    return: DataFrame nettoyé.
     """
     print(f"{len(df)} lignes initiales")
+    # Suppression des lignes avec des valeurs manquantes critiques
     df = df.dropna(subset=["hotel_name", "city", "country"])
+    # Conversion des colonnes numériques
     numeric_cols = [
         "star_rating", "lat", "lon",
         "cleanliness_base", "comfort_base",
@@ -43,10 +33,17 @@ def clean_hotels(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 def clean_users(df: pd.DataFrame) -> pd.DataFrame:
-    """Nettoyage spécifique du tableau users.csv"""
+    """
+    Nettoyage spécifique du tableau users.csv.
+    param df: DataFrame brut à nettoyer.
+    return: DataFrame nettoyé.
+    """
     print(f"{len(df)} lignes initiales")
+    # Suppression des doublons
     df = df.drop_duplicates(subset="user_id")
+    # Suppression des lignes avec des valeurs manquantes critiques
     df = df.dropna(subset=["user_id", "country"])
+    # Nettoyage des colonnes spécifiques : conversion de types et gestion des valeurs manquantes
     df["join_date"] = pd.to_datetime(df["join_date"], errors="coerce")
     df["user_gender"] = df["user_gender"].str.title().fillna("Unknown")
     df["traveller_type"] = df["traveller_type"].str.title().fillna("Unknown")
@@ -55,9 +52,15 @@ def clean_users(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 def clean_reviews(df: pd.DataFrame) -> pd.DataFrame:
-    """Nettoyage spécifique du tableau reviews.csv"""
+    """
+    Nettoyage spécifique du tableau reviews.csv
+    param df: DataFrame brut à nettoyer.
+    return: DataFrame nettoyé.
+    """
     print(f"{len(df)} lignes initiales")
+    # Suppression des lignes avec des valeurs manquantes critiques
     df = df.dropna(subset=["review_id", "hotel_id", "user_id", "score_overall"])
+    # Conversion des colonnes numériques
     numeric_cols = [
         "score_overall", "score_cleanliness",
         "score_comfort", "score_facilities",
@@ -72,6 +75,7 @@ def clean_reviews(df: pd.DataFrame) -> pd.DataFrame:
     print(f"{len(df)} lignes restantes.")
     return df
 
+
 # Mapping des fichiers aux fonctions de nettoyage
 CLEANING_FUNCTIONS = {
     "hotels.csv": clean_hotels,
@@ -79,38 +83,21 @@ CLEANING_FUNCTIONS = {
     "reviews.csv": clean_reviews,
 }
 
-def download_data() -> None:
-    """
-    Télécharge le jeu de données depuis KaggleHub et le copie dans data/raw/.
-    """
-    try:
-        dataset_path = kagglehub.dataset_download(KAGGLE_MODEL_SLUG)
-        print(f"Dataset téléchargé dans le cache : {dataset_path}")
-        for file_name in os.listdir(dataset_path):
-            if file_name.endswith(".csv"):
-                src = os.path.join(dataset_path, file_name)
-                dst = os.path.join(RAW_DATA_PATH, file_name)
-                shutil.copy(src, dst)
-
-        print("Téléchargement et copie terminés avec succès !")
-
-    except Exception as e:
-        print(f"Erreur lors du téléchargement des données : {e}")
-
 def process_data() -> None:
     """
     Charge, nettoie et sauvegarde chaque fichier CSV.
     """
     for filename in DATA_FILES:
-        raw_path = os.path.join(RAW_DATA_PATH, filename)
         cleaned_path = os.path.join(CLEAN_DATA_PATH, filename)
 
         # 1. Récupération des données brutes
         try:
-            print(f"\nChargement du fichier brut : {raw_path}")
-            df = pd.read_csv(raw_path)
+            print(f"\nChargement du fichier brut")
+            # Téléchargement du dataset depuis Kaggle
+            path = telecharger_dataset(KAGGLE_MODEL_SLUG)
+            df = pd.read_csv(os.path.join(path, filename))
         except FileNotFoundError:
-            print(f"Fichier non trouvé : {raw_path}.")
+            print(f"Fichier non trouvé.")
             continue
         except Exception as e:
             print(f"Erreur lors du chargement de {filename} : {e}")
@@ -118,6 +105,7 @@ def process_data() -> None:
 
         # 2. Nettoyage des données
         print(f"Nettoyage des données...")
+        # Application de la fonction de nettoyage spécifique
         clean_func = CLEANING_FUNCTIONS.get(filename)
         if clean_func:
             df_cleaned = clean_func(df)
@@ -125,7 +113,7 @@ def process_data() -> None:
             print(f"Aucune fonction de nettoyage trouvée pour {filename}.")
             df_cleaned = df.copy()
 
-        # 3. Renommage et sauvegarde
+        # 3. Renommage et sauvegarde des fichiers nettoyés dans le dossier cleaned
         cleaned_name = f"cleaned_{filename}"
         cleaned_path = os.path.join(CLEAN_DATA_PATH, cleaned_name)
 
@@ -138,9 +126,8 @@ def process_data() -> None:
             
     print("\nProcessus de nettoyage des données terminé.")
 
-# --- Point d'entrée principal ---
 
+# --- Point d'entrée principal ---
 if __name__ == "__main__":
-    ensure_directories()
-    download_data()
+    ensure_directories(CLEAN_DATA_PATH)
     process_data()
