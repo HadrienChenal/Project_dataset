@@ -1,16 +1,23 @@
+import os
 import pandas as pd
 import kagglehub
-from pathlib import Path
 
-# Télécharge le dataset depuis Kaggle (ou récupère depuis le cache)
-path = Path(kagglehub.dataset_download("alperenmyung/international-hotel-booking-analytics"))
+def telecharger_dataset(nom_dataset: str) -> str:
+    """
+    Télécharge (ou récupère depuis le cache) un dataset Kaggle via kagglehub.
+    Retourne le chemin du dossier contenant les fichiers CSV.
+    """
+    path = kagglehub.dataset_download(nom_dataset)
+    return path
 
-# Liste tous les CSV du dossier téléchargé
-csv_files = list(path.glob("*.csv"))
 
-# On peut choisir de charger chacun des CSV séparément
-dfs = {}
-for csv_file in csv_files:
-    dfs[csv_file.name] = pd.read_csv(csv_file)
-    print(f"\n--- Aperçu de {csv_file.name} ---")
-    print(dfs[csv_file.name].head())
+def charger_csvs(path: str) -> dict[str, pd.DataFrame]:
+    """
+    Charge tous les fichiers CSV présents dans un dossier en DataFrames pandas.
+    """
+    csv_files = [f for f in os.listdir(path) if f.endswith(".csv")]
+    dfs: dict[str, pd.DataFrame] = {}
+    for csv_file in csv_files:
+        csv_path = os.path.join(path, csv_file)
+        dfs[csv_file] = pd.read_csv(csv_path)
+    return dfs
