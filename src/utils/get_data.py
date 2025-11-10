@@ -1,23 +1,34 @@
 import os
-import pandas as pd
-import kagglehub
+import shutil
+from .common_functions import (
+    RAW_DATA_PATH,
+    KAGGLE_MODEL_SLUG,
+    ensure_directories,
+    telecharger_dataset
+)
 
-def telecharger_dataset(nom_dataset: str) -> str:
+def charger_csvs() -> None:
     """
-    Télécharge (ou récupère depuis le cache) un dataset Kaggle via kagglehub.
-    Retourne le chemin du dossier contenant les fichiers CSV.
+    Charge tous les fichiers CSV présents dans le dossier data/raw.
     """
-    path = kagglehub.dataset_download(nom_dataset)
-    return path
+    try:
+        #Téléchargement du dataset depuis Kaggle
+        dataset_path = telecharger_dataset(KAGGLE_MODEL_SLUG)
+        print(f"Dataset téléchargé dans le cache : {dataset_path}")
+        # Copie des fichiers CSV dans le dossier RAW_DATA_PATH
+        for file_name in os.listdir(dataset_path):
+            if file_name.endswith(".csv"):
+                src = os.path.join(dataset_path, file_name)
+                dst = os.path.join(RAW_DATA_PATH, file_name)
+                shutil.copy(src, dst)
 
+        print("Téléchargement et copie terminés avec succès !")
 
-def charger_csvs(path: str) -> dict[str, pd.DataFrame]:
-    """
-    Charge tous les fichiers CSV présents dans un dossier en DataFrames pandas.
-    """
-    csv_files = [f for f in os.listdir(path) if f.endswith(".csv")]
-    dfs: dict[str, pd.DataFrame] = {}
-    for csv_file in csv_files:
-        csv_path = os.path.join(path, csv_file)
-        dfs[csv_file] = pd.read_csv(csv_path)
-    return dfs
+    except Exception as e:
+        print(f"Erreur lors du téléchargement des données : {e}")
+
+# --- Point d'entrée principal ---
+if __name__ == "__main__":
+    ensure_directories(RAW_DATA_PATH)
+    charger_csvs()
+
