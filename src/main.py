@@ -89,6 +89,8 @@ if __name__ == "__main__":
     chemin = telecharger_dataset("alperenmyung/international-hotel-booking-analytics")
 
     # Charger tous les CSV
+    print(charger_csvs)
+    help(charger_csvs)
     dataframes = charger_csvs(chemin)
 
     # Histogramme 1 : notes globales
