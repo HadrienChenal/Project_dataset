@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
-from utils.get_data import telecharger_dataset, charger_csvs
+from utils.get_data import charger_csvs
+from utils.common_functions import telecharger_dataset
 
 def tracer_histogramme_notes(dataframes: dict[str, pd.DataFrame]) -> None:
     """

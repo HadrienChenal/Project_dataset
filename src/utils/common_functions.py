@@ -21,7 +21,6 @@ def ensure_directories(path: str) -> None:
     """
     os.makedirs(path, exist_ok=True)
 
-
 def telecharger_dataset(nom_dataset: str) -> str:
     """
     Télécharge (ou récupère depuis le cache) un dataset Kaggle via kagglehub.
@@ -30,7 +29,3 @@ def telecharger_dataset(nom_dataset: str) -> str:
     """
     path = kagglehub.dataset_download(nom_dataset)
     return path
-
-
-
-
