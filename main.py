@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
-from utils.get_data import telecharger_dataset, charger_csvs
+from utils.get_data import charger_csvs
+from utils.common_functions import telecharger_dataset
 
 def tracer_histogramme_notes(dataframes: dict[str, pd.DataFrame]) -> None:
     """
@@ -89,7 +90,7 @@ if __name__ == "__main__":
     chemin = telecharger_dataset("alperenmyung/international-hotel-booking-analytics")
 
     # Charger tous les CSV
-    dataframes = charger_csvs(chemin)
+    dataframes = charger_csvs()
 
     # Histogramme 1 : notes globales
     tracer_histogramme_notes(dataframes)
