@@ -135,6 +135,3 @@ def tracer_histogramme_proprete(dataframes: dict[str, pd.DataFrame]) -> go.Figur
 
     return fig
 
-
-# Compatibilité : ancien nom utilisé dans certaines pages
-create_histogram_notes = tracer_histogramme_notes
