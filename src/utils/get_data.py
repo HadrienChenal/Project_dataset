@@ -1,6 +1,5 @@
 import os
 import pandas as pd
-import kagglehub
 
 def charger_csvs(path: str) -> dict[str, pd.DataFrame]:
     """
