@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-
-
-
-
-
-
-
-
-=======
 import os
 import kagglehub
 from typing import List
@@ -47,4 +37,3 @@ def telecharger_dataset(nom_dataset: str) -> str:
     # Sinon tenter de télécharger via kagglehub (peut nécessiter configuration Kaggle)
     path = kagglehub.dataset_download(nom_dataset)
     return path
->>>>>>> 911afaf4b501be4bdc8f70f2a3a35259381b834c
