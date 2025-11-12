@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_dd602b1cb08e026a478a80966a5c5a83 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_dd602b1cb08e026a478a80966a5c5a83" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_dd602b1cb08e026a478a80966a5c5a83 = L.map(
+                "map_dd602b1cb08e026a478a80966a5c5a83",
+                {
+                    center: [20.9205908, 33.897558360000005],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 3,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_8473b0b5bc15c169cfd1e503427cea07 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_8473b0b5bc15c169cfd1e503427cea07.addTo(map_dd602b1cb08e026a478a80966a5c5a83);
+        
+    
+            var marker_75976ab0161f432feb3059a8a3569ffe = L.marker(
+                [40.758, -73.9855],
+                {
+}
+            ).addTo(map_dd602b1cb08e026a478a80966a5c5a83);
+        
+    
+            var icon_b3a7658dcb2b37040338092a9e2fcd3b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e41219999bef2a33a9eeb8be97fe5550 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e5cf997916e8713a94ef94a28f7cff85 = $(`<div id="html_e5cf997916e8713a94ef94a28f7cff85" style="width: 100.0%; height: 100.0%;">         <b>The Azure Tower</b><br>         ⭐ N/A étoiles<br>         📍 United States         </div>`)[0];
+                popup_e41219999bef2a33a9eeb8be97fe5550.setContent(html_e5cf997916e8713a94ef94a28f7cff85);
+            
+        
+
+        marker_75976ab0161f432feb3059a8a3569ffe.bindPopup(popup_e41219999bef2a33a9eeb8be97fe5550)
+        ;
+
+        
+    
+    
+                marker_75976ab0161f432feb3059a8a3569ffe.setIcon(icon_b3a7658dcb2b37040338092a9e2fcd3b);
+            
+    
+            var marker_ca9439d51cdff6ad3f62a9cd91b92e00 = L.marker(
+                [51.5072, -0.1276],
+                {
+}
+            ).addTo(map_dd602b1cb08e026a478a80966a5c5a83);
+        
+    
+            var icon_dd6096f94070dfd04578170f4fbb3b15 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e7c37b0771bfc8e73cae68e708c94c6f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c9addfef1bfdd39613b2184d93be771e = $(`<div id="html_c9addfef1bfdd39613b2184d93be771e" style="width: 100.0%; height: 100.0%;">         <b>The Royal Compass</b><br>         ⭐ N/A étoiles<br>         📍 United Kingdom         </div>`)[0];
+                popup_e7c37b0771bfc8e73cae68e708c94c6f.setContent(html_c9addfef1bfdd39613b2184d93be771e);
+            
+        
+
+        marker_ca9439d51cdff6ad3f62a9cd91b92e00.bindPopup(popup_e7c37b0771bfc8e73cae68e708c94c6f)
+        ;
+
+        
+    
+    
+                marker_ca9439d51cdff6ad3f62a9cd91b92e00.setIcon(icon_dd6096f94070dfd04578170f4fbb3b15);
+            
+    
+            var marker_8ef32828a9050363b6f4d8421a89b227 = L.marker(
+                [48.8566, 2.3522],
+                {
+}
+            ).addTo(map_dd602b1cb08e026a478a80966a5c5a83);
+        
+    
+            var icon_6fbfc2a8e69ae94cdfb6a38edcb4ecb7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_07dbedcc37786f8d7460d97a7036123b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6344c3ef7947038e8de97c0f9c8efd0a = $(`<div id="html_6344c3ef7947038e8de97c0f9c8efd0a" style="width: 100.0%; height: 100.0%;">         <b>L'Étoile Palace</b><br>         ⭐ N/A étoiles<br>         📍 France         </div>`)[0];
+                popup_07dbedcc37786f8d7460d97a7036123b.setContent(html_6344c3ef7947038e8de97c0f9c8efd0a);
+            
+        
+
+        marker_8ef32828a9050363b6f4d8421a89b227.bindPopup(popup_07dbedcc37786f8d7460d97a7036123b)
+        ;
+
+        
+    
+    
+                marker_8ef32828a9050363b6f4d8421a89b227.setIcon(icon_6fbfc2a8e69ae94cdfb6a38edcb4ecb7);
+            
+    
+            var marker_dd01594d0e0f5a07bcea220dc7737b90 = L.marker(
+                [35.6895, 139.6917],
+                {
+}
+            ).addTo(map_dd602b1cb08e026a478a80966a5c5a83);
+        
+    
+            var icon_f6c3b122277534b97502bdabe5f45faf = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2226b1b8e2a32d034def25d6faeb4405 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_849ecea974d834bade09e93703368468 = $(`<div id="html_849ecea974d834bade09e93703368468" style="width: 100.0%; height: 100.0%;">         <b>Kyo-to Grand</b><br>         ⭐ N/A étoiles<br>         📍 Japan         </div>`)[0];
+                popup_2226b1b8e2a32d034def25d6faeb4405.setContent(html_849ecea974d834bade09e93703368468);
+            
+        
+
+        marker_dd01594d0e0f5a07bcea220dc7737b90.bindPopup(popup_2226b1b8e2a32d034def25d6faeb4405)
+        ;
+
+        
+    
+    
+                marker_dd01594d0e0f5a07bcea220dc7737b90.setIcon(icon_f6c3b122277534b97502bdabe5f45faf);
+            
+    
+            var marker_c79f6706dcdbd0b5b1b0b220a812a5d8 = L.marker(
+                [25.2769, 55.2962],
+                {
+}
+            ).addTo(map_dd602b1cb08e026a478a80966a5c5a83);
+        
+    
+            var icon_be327a7cb7f36aa2f4e4d993f6898fc2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bef1ac0ab93bbea4a4e918b5da00fd0d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_90e403d05a4f2e5a07e3d1b527073707 = $(`<div id="html_90e403d05a4f2e5a07e3d1b527073707" style="width: 100.0%; height: 100.0%;">         <b>The Golden Oasis</b><br>         ⭐ N/A étoiles<br>         📍 United Arab Emirates         </div>`)[0];
+                popup_bef1ac0ab93bbea4a4e918b5da00fd0d.setContent(html_90e403d05a4f2e5a07e3d1b527073707);
+            
+        
+
+        marker_c79f6706dcdbd0b5b1b0b220a812a5d8.bindPopup(popup_bef1ac0ab93bbea4a4e918b5da00fd0d)
+        ;
+
+        
+    
+    
+                marker_c79f6706dcdbd0b5b1b0b220a812a5d8.setIcon(icon_be327a7cb7f36aa2f4e4d993f6898fc2);
+            
+    
+            var marker_ad721e5b364132f1b12ff342f192b2b5 = L.marker(
+                [1.29027, 103.851959],
+                {
+}
+            ).addTo(map_dd602b1cb08e026a478a80966a5c5a83);
+        
+    
+            var icon_bc92dd901a88b76053468c825c6ea50a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_82b193d298f595377dfc95bef32754e6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bf5ea23dfdd81a11adbac48dcae8f9f4 = $(`<div id="html_bf5ea23dfdd81a11adbac48dcae8f9f4" style="width: 100.0%; height: 100.0%;">         <b>Marina Bay Zenith</b><br>         ⭐ N/A étoiles<br>         📍 Singapore         </div>`)[0];
+                popup_82b193d298f595377dfc95bef32754e6.setContent(html_bf5ea23dfdd81a11adbac48dcae8f9f4);
+            
+        
+
+        marker_ad721e5b364132f1b12ff342f192b2b5.bindPopup(popup_82b193d298f595377dfc95bef32754e6)
+        ;
+
+        
+    
+    
+                marker_ad721e5b364132f1b12ff342f192b2b5.setIcon(icon_bc92dd901a88b76053468c825c6ea50a);
+            
+    
+            var marker_91d25d1bbbdf898e1f86c5a27ac129c3 = L.marker(
+                [-33.8651, 151.2099],
+                {
+}
+            ).addTo(map_dd602b1cb08e026a478a80966a5c5a83);
+        
+    
+            var icon_17a2c37c526b700ca16e74e09cc7eadc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_04a798397869d7333cbbfd49d720b067 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_091a906365e1fb9f31cf3d79cf6a2b9b = $(`<div id="html_091a906365e1fb9f31cf3d79cf6a2b9b" style="width: 100.0%; height: 100.0%;">         <b>Sydney Harbour Grand</b><br>         ⭐ N/A étoiles<br>         📍 Australia         </div>`)[0];
+                popup_04a798397869d7333cbbfd49d720b067.setContent(html_091a906365e1fb9f31cf3d79cf6a2b9b);
+            
+        
+
+        marker_91d25d1bbbdf898e1f86c5a27ac129c3.bindPopup(popup_04a798397869d7333cbbfd49d720b067)
+        ;
+
+        
+    
+    
+                marker_91d25d1bbbdf898e1f86c5a27ac129c3.setIcon(icon_17a2c37c526b700ca16e74e09cc7eadc);
+            
+    
+            var marker_a26164ebdb8674cd07435e8ef87124d3 = L.marker(
+                [-22.9068, -43.1729],
+                {
+}
+            ).addTo(map_dd602b1cb08e026a478a80966a5c5a83);
+        
+    
+            var icon_d10715ea5c5c21589fe37e78a7d08dbb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_949d095c7ea844283ac5e5c52443438c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e955451434ce27846e3789a2a659001c = $(`<div id="html_e955451434ce27846e3789a2a659001c" style="width: 100.0%; height: 100.0%;">         <b>Copacabana Lux</b><br>         ⭐ N/A étoiles<br>         📍 Brazil         </div>`)[0];
+                popup_949d095c7ea844283ac5e5c52443438c.setContent(html_e955451434ce27846e3789a2a659001c);
+            
+        
+
+        marker_a26164ebdb8674cd07435e8ef87124d3.bindPopup(popup_949d095c7ea844283ac5e5c52443438c)
+        ;
+
+        
+    
+    
+                marker_a26164ebdb8674cd07435e8ef87124d3.setIcon(icon_d10715ea5c5c21589fe37e78a7d08dbb);
+            
+    
+            var marker_a1127fbff8afffe455eb689901a01012 = L.marker(
+                [52.52, 13.405],
+                {
+}
+            ).addTo(map_dd602b1cb08e026a478a80966a5c5a83);
+        
+    
+            var icon_004d7a6dad00a3e49b5c64d59a283e2d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d884a166358a839ae2ba3300a02e92d3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bb647a0bd1d1a15ed59dd392d3176e61 = $(`<div id="html_bb647a0bd1d1a15ed59dd392d3176e61" style="width: 100.0%; height: 100.0%;">         <b>Berlin Mitte Elite</b><br>         ⭐ N/A étoiles<br>         📍 Germany         </div>`)[0];
+                popup_d884a166358a839ae2ba3300a02e92d3.setContent(html_bb647a0bd1d1a15ed59dd392d3176e61);
+            
+        
+
+        marker_a1127fbff8afffe455eb689901a01012.bindPopup(popup_d884a166358a839ae2ba3300a02e92d3)
+        ;
+
+        
+    
+    
+                marker_a1127fbff8afffe455eb689901a01012.setIcon(icon_004d7a6dad00a3e49b5c64d59a283e2d);
+            
+    
+            var marker_5bbd8dde3f566fd85f2bc6951e294f6b = L.marker(
+                [43.6532, -79.3832],
+                {
+}
+            ).addTo(map_dd602b1cb08e026a478a80966a5c5a83);
+        
+    
+            var icon_7e1bfca29c9bac3ca02783c3705e3f12 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2df6b962c80d4421f2160ef57f9645ba = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_95bc975ee1f0281ac1a776096e3bf2f0 = $(`<div id="html_95bc975ee1f0281ac1a776096e3bf2f0" style="width: 100.0%; height: 100.0%;">         <b>The Maple Grove</b><br>         ⭐ N/A étoiles<br>         📍 Canada         </div>`)[0];
+                popup_2df6b962c80d4421f2160ef57f9645ba.setContent(html_95bc975ee1f0281ac1a776096e3bf2f0);
+            
+        
+
+        marker_5bbd8dde3f566fd85f2bc6951e294f6b.bindPopup(popup_2df6b962c80d4421f2160ef57f9645ba)
+        ;
+
+        
+    
+    
+                marker_5bbd8dde3f566fd85f2bc6951e294f6b.setIcon(icon_7e1bfca29c9bac3ca02783c3705e3f12);
+            
+    
+            var marker_9bfbf02ea1971a39c10d8dad93f06517 = L.marker(
+                [31.2304, 121.4737],
+                {
+}
+            ).addTo(map_dd602b1cb08e026a478a80966a5c5a83);
+        
+    
+            var icon_7ab5e2095e936afd8fd5c8ce723009e2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8539946fed79214d18c5232d62043284 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ad7caea04f8a5bc5ebbdfac3846e86a5 = $(`<div id="html_ad7caea04f8a5bc5ebbdfac3846e86a5" style="width: 100.0%; height: 100.0%;">         <b>The Bund Palace</b><br>         ⭐ N/A étoiles<br>         📍 China         </div>`)[0];
+                popup_8539946fed79214d18c5232d62043284.setContent(html_ad7caea04f8a5bc5ebbdfac3846e86a5);
+            
+        
+
+        marker_9bfbf02ea1971a39c10d8dad93f06517.bindPopup(popup_8539946fed79214d18c5232d62043284)
+        ;
+
+        
+    
+    
+                marker_9bfbf02ea1971a39c10d8dad93f06517.setIcon(icon_7ab5e2095e936afd8fd5c8ce723009e2);
+            
+    
+            var marker_d8831612d00b786b8516e49ee6c9a7d7 = L.marker(
+                [19.4326, -99.1332],
+                {
+}
+            ).addTo(map_dd602b1cb08e026a478a80966a5c5a83);
+        
+    
+            var icon_7048e580583753a877f0d13ca371e25a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bd5ee334e6a8dd8ef8f5f636ba0817d3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_fd4e7bfbd5009a6b4c690dd31e5a8adf = $(`<div id="html_fd4e7bfbd5009a6b4c690dd31e5a8adf" style="width: 100.0%; height: 100.0%;">         <b>Aztec Heights</b><br>         ⭐ N/A étoiles<br>         📍 Mexico         </div>`)[0];
+                popup_bd5ee334e6a8dd8ef8f5f636ba0817d3.setContent(html_fd4e7bfbd5009a6b4c690dd31e5a8adf);
+            
+        
+
+        marker_d8831612d00b786b8516e49ee6c9a7d7.bindPopup(popup_bd5ee334e6a8dd8ef8f5f636ba0817d3)
+        ;
+
+        
+    
+    
+                marker_d8831612d00b786b8516e49ee6c9a7d7.setIcon(icon_7048e580583753a877f0d13ca371e25a);
+            
+    
+            var marker_9fd2a0430453e5da2c45446761359820 = L.marker(
+                [19.076, 72.8777],
+                {
+}
+            ).addTo(map_dd602b1cb08e026a478a80966a5c5a83);
+        
+    
+            var icon_e2f649b0a41b3611f72b6dfc91cc0f9d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_52980356ce363e1ef0fc6f75ddfdb67c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_895e8cf92fec6019d818c16ae8c071b6 = $(`<div id="html_895e8cf92fec6019d818c16ae8c071b6" style="width: 100.0%; height: 100.0%;">         <b>The Gateway Royale</b><br>         ⭐ N/A étoiles<br>         📍 India         </div>`)[0];
+                popup_52980356ce363e1ef0fc6f75ddfdb67c.setContent(html_895e8cf92fec6019d818c16ae8c071b6);
+            
+        
+
+        marker_9fd2a0430453e5da2c45446761359820.bindPopup(popup_52980356ce363e1ef0fc6f75ddfdb67c)
+        ;
+
+        
+    
+    
+                marker_9fd2a0430453e5da2c45446761359820.setIcon(icon_e2f649b0a41b3611f72b6dfc91cc0f9d);
+            
+    
+            var marker_df80d23e852bfe9537bb4ede8524705f = L.marker(
+                [41.9028, 12.4964],
+                {
+}
+            ).addTo(map_dd602b1cb08e026a478a80966a5c5a83);
+        
+    
+            var icon_5c9f3c68ad17bf60d436570f031dba29 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_68953290df4a6824499190c90cba1cdd = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c2ec332c559a494a225d94c89082789d = $(`<div id="html_c2ec332c559a494a225d94c89082789d" style="width: 100.0%; height: 100.0%;">         <b>Colosseum Gardens</b><br>         ⭐ N/A étoiles<br>         📍 Italy         </div>`)[0];
+                popup_68953290df4a6824499190c90cba1cdd.setContent(html_c2ec332c559a494a225d94c89082789d);
+            
+        
+
+        marker_df80d23e852bfe9537bb4ede8524705f.bindPopup(popup_68953290df4a6824499190c90cba1cdd)
+        ;
+
+        
+    
+    
+                marker_df80d23e852bfe9537bb4ede8524705f.setIcon(icon_5c9f3c68ad17bf60d436570f031dba29);
+            
+    
+            var marker_255c1f6ffad8d8b4f397470bf5905ea9 = L.marker(
+                [-33.9249, 18.4241],
+                {
+}
+            ).addTo(map_dd602b1cb08e026a478a80966a5c5a83);
+        
+    
+            var icon_79db9224e7c7f42c6ff9c0bec3c74b28 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_23bdd02430424a1382fa845e28671344 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5739c5b5e958b51928dc06b92efac398 = $(`<div id="html_5739c5b5e958b51928dc06b92efac398" style="width: 100.0%; height: 100.0%;">         <b>Table Mountain View</b><br>         ⭐ N/A étoiles<br>         📍 South Africa         </div>`)[0];
+                popup_23bdd02430424a1382fa845e28671344.setContent(html_5739c5b5e958b51928dc06b92efac398);
+            
+        
+
+        marker_255c1f6ffad8d8b4f397470bf5905ea9.bindPopup(popup_23bdd02430424a1382fa845e28671344)
+        ;
+
+        
+    
+    
+                marker_255c1f6ffad8d8b4f397470bf5905ea9.setIcon(icon_79db9224e7c7f42c6ff9c0bec3c74b28);
+            
+    
+            var marker_5a8f35ee72bec7d343dc76ca64d4d4e7 = L.marker(
+                [37.5665, 126.978],
+                {
+}
+            ).addTo(map_dd602b1cb08e026a478a80966a5c5a83);
+        
+    
+            var icon_dec94f943fbae9aa47502a78c6908f42 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0faf4d817092e9e33d871fac00d95395 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_255432e3589c5f2aeff6451f63903de9 = $(`<div id="html_255432e3589c5f2aeff6451f63903de9" style="width: 100.0%; height: 100.0%;">         <b>Han River Oasis</b><br>         ⭐ N/A étoiles<br>         📍 South Korea         </div>`)[0];
+                popup_0faf4d817092e9e33d871fac00d95395.setContent(html_255432e3589c5f2aeff6451f63903de9);
+            
+        
+
+        marker_5a8f35ee72bec7d343dc76ca64d4d4e7.bindPopup(popup_0faf4d817092e9e33d871fac00d95395)
+        ;
+
+        
+    
+    
+                marker_5a8f35ee72bec7d343dc76ca64d4d4e7.setIcon(icon_dec94f943fbae9aa47502a78c6908f42);
+            
+    
+            var marker_3f79ffcc9f8c9baa46116ca83114649c = L.marker(
+                [55.7558, 37.6173],
+                {
+}
+            ).addTo(map_dd602b1cb08e026a478a80966a5c5a83);
+        
+    
+            var icon_dce1157b18c3561159317acc93d73f49 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e5118f34c8084602b97c2f933ca96d45 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3f118b29b5389d5f577d779cfb15e99d = $(`<div id="html_3f118b29b5389d5f577d779cfb15e99d" style="width: 100.0%; height: 100.0%;">         <b>Kremlin Suites</b><br>         ⭐ N/A étoiles<br>         📍 Russia         </div>`)[0];
+                popup_e5118f34c8084602b97c2f933ca96d45.setContent(html_3f118b29b5389d5f577d779cfb15e99d);
+            
+        
+
+        marker_3f79ffcc9f8c9baa46116ca83114649c.bindPopup(popup_e5118f34c8084602b97c2f933ca96d45)
+        ;
+
+        
+    
+    
+                marker_3f79ffcc9f8c9baa46116ca83114649c.setIcon(icon_dce1157b18c3561159317acc93d73f49);
+            
+    
+            var marker_d896936207629db9b331173f100318b0 = L.marker(
+                [30.0444, 31.2357],
+                {
+}
+            ).addTo(map_dd602b1cb08e026a478a80966a5c5a83);
+        
+    
+            var icon_1d08280824daacd1f0adc4afce0be8e1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_22ff86c30d5c2d0a751993044d9add2b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f0dc6b940b4185c290b7e05ae3f1158b = $(`<div id="html_f0dc6b940b4185c290b7e05ae3f1158b" style="width: 100.0%; height: 100.0%;">         <b>Nile Grandeur</b><br>         ⭐ N/A étoiles<br>         📍 Egypt         </div>`)[0];
+                popup_22ff86c30d5c2d0a751993044d9add2b.setContent(html_f0dc6b940b4185c290b7e05ae3f1158b);
+            
+        
+
+        marker_d896936207629db9b331173f100318b0.bindPopup(popup_22ff86c30d5c2d0a751993044d9add2b)
+        ;
+
+        
+    
+    
+                marker_d896936207629db9b331173f100318b0.setIcon(icon_1d08280824daacd1f0adc4afce0be8e1);
+            
+    
+            var marker_54a42bc356c932a8a47278e5f373dbed = L.marker(
+                [41.3851, 2.1734],
+                {
+}
+            ).addTo(map_dd602b1cb08e026a478a80966a5c5a83);
+        
+    
+            var icon_6b071cb5a46e988bb5687836a1add0ce = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_88b1f1786105bf4b4eaac73ab71e7941 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_17dbbd2e52713555113c427aa55d035e = $(`<div id="html_17dbbd2e52713555113c427aa55d035e" style="width: 100.0%; height: 100.0%;">         <b>Gaudi's Retreat</b><br>         ⭐ N/A étoiles<br>         📍 Spain         </div>`)[0];
+                popup_88b1f1786105bf4b4eaac73ab71e7941.setContent(html_17dbbd2e52713555113c427aa55d035e);
+            
+        
+
+        marker_54a42bc356c932a8a47278e5f373dbed.bindPopup(popup_88b1f1786105bf4b4eaac73ab71e7941)
+        ;
+
+        
+    
+    
+                marker_54a42bc356c932a8a47278e5f373dbed.setIcon(icon_6b071cb5a46e988bb5687836a1add0ce);
+            
+    
+            var marker_081c2dbd1b980b054cc7965c4cbd8709 = L.marker(
+                [13.7563, 100.5018],
+                {
+}
+            ).addTo(map_dd602b1cb08e026a478a80966a5c5a83);
+        
+    
+            var icon_1d22165ee800827c546356f70c88bd5e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d128a3a6e7a9598df3104d72f2e82110 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2dcdf19813245d030da235eb8749e072 = $(`<div id="html_2dcdf19813245d030da235eb8749e072" style="width: 100.0%; height: 100.0%;">         <b>The Orchid Palace</b><br>         ⭐ N/A étoiles<br>         📍 Thailand         </div>`)[0];
+                popup_d128a3a6e7a9598df3104d72f2e82110.setContent(html_2dcdf19813245d030da235eb8749e072);
+            
+        
+
+        marker_081c2dbd1b980b054cc7965c4cbd8709.bindPopup(popup_d128a3a6e7a9598df3104d72f2e82110)
+        ;
+
+        
+    
+    
+                marker_081c2dbd1b980b054cc7965c4cbd8709.setIcon(icon_1d22165ee800827c546356f70c88bd5e);
+            
+    
+            var marker_b7d58ea1a609faba5fdb0ce876e08113 = L.marker(
+                [41.0082, 28.9784],
+                {
+}
+            ).addTo(map_dd602b1cb08e026a478a80966a5c5a83);
+        
+    
+            var icon_9e935b5131532c8c47e5afb7d1ffb992 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ee0879d5e5d48275e5d18c63d4d3076a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e4c7991e82268cac7ea62b863e5d5f58 = $(`<div id="html_e4c7991e82268cac7ea62b863e5d5f58" style="width: 100.0%; height: 100.0%;">         <b>The Bosphorus Inn</b><br>         ⭐ N/A étoiles<br>         📍 Turkey         </div>`)[0];
+                popup_ee0879d5e5d48275e5d18c63d4d3076a.setContent(html_e4c7991e82268cac7ea62b863e5d5f58);
+            
+        
+
+        marker_b7d58ea1a609faba5fdb0ce876e08113.bindPopup(popup_ee0879d5e5d48275e5d18c63d4d3076a)
+        ;
+
+        
+    
+    
+                marker_b7d58ea1a609faba5fdb0ce876e08113.setIcon(icon_9e935b5131532c8c47e5afb7d1ffb992);
+            
+    
+            var marker_be8b21d82ffd06ab185d5d3e8802e29e = L.marker(
+                [52.3676, 4.9041],
+                {
+}
+            ).addTo(map_dd602b1cb08e026a478a80966a5c5a83);
+        
+    
+            var icon_06d5de5d039c4acb6f3d1e77d5b7e52e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_de76842af04eac2cd23c47395c19906e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_39b8785eec1c126e99bdd8ca311fd1bc = $(`<div id="html_39b8785eec1c126e99bdd8ca311fd1bc" style="width: 100.0%; height: 100.0%;">         <b>Canal House Grand</b><br>         ⭐ N/A étoiles<br>         📍 Netherlands         </div>`)[0];
+                popup_de76842af04eac2cd23c47395c19906e.setContent(html_39b8785eec1c126e99bdd8ca311fd1bc);
+            
+        
+
+        marker_be8b21d82ffd06ab185d5d3e8802e29e.bindPopup(popup_de76842af04eac2cd23c47395c19906e)
+        ;
+
+        
+    
+    
+                marker_be8b21d82ffd06ab185d5d3e8802e29e.setIcon(icon_06d5de5d039c4acb6f3d1e77d5b7e52e);
+            
+    
+            var marker_db33ac32d74463c3df077a367923bcdd = L.marker(
+                [-34.6037, -58.3816],
+                {
+}
+            ).addTo(map_dd602b1cb08e026a478a80966a5c5a83);
+        
+    
+            var icon_d5a61e9adc48a3d7af08e3ce8602af50 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d30be95349002255736e1490a0b13d01 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_111872136342369f36c6992985fb3870 = $(`<div id="html_111872136342369f36c6992985fb3870" style="width: 100.0%; height: 100.0%;">         <b>Tango Boutique</b><br>         ⭐ N/A étoiles<br>         📍 Argentina         </div>`)[0];
+                popup_d30be95349002255736e1490a0b13d01.setContent(html_111872136342369f36c6992985fb3870);
+            
+        
+
+        marker_db33ac32d74463c3df077a367923bcdd.bindPopup(popup_d30be95349002255736e1490a0b13d01)
+        ;
+
+        
+    
+    
+                marker_db33ac32d74463c3df077a367923bcdd.setIcon(icon_d5a61e9adc48a3d7af08e3ce8602af50);
+            
+    
+            var marker_79762360d88289a2e22cf86e01e28a74 = L.marker(
+                [6.5244, 3.3792],
+                {
+}
+            ).addTo(map_dd602b1cb08e026a478a80966a5c5a83);
+        
+    
+            var icon_bbc808b7f77fee6f14cbbdf7b39f3be0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5a6375c7e79c7c331e097eec5fabf59f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_879cf406241730630c4f9c2539312e30 = $(`<div id="html_879cf406241730630c4f9c2539312e30" style="width: 100.0%; height: 100.0%;">         <b>The Savannah House</b><br>         ⭐ N/A étoiles<br>         📍 Nigeria         </div>`)[0];
+                popup_5a6375c7e79c7c331e097eec5fabf59f.setContent(html_879cf406241730630c4f9c2539312e30);
+            
+        
+
+        marker_79762360d88289a2e22cf86e01e28a74.bindPopup(popup_5a6375c7e79c7c331e097eec5fabf59f)
+        ;
+
+        
+    
+    
+                marker_79762360d88289a2e22cf86e01e28a74.setIcon(icon_bbc808b7f77fee6f14cbbdf7b39f3be0);
+            
+    
+            var marker_e4cbf26fd86fa06b447d4a652a0ec1b4 = L.marker(
+                [-41.2865, 174.7762],
+                {
+}
+            ).addTo(map_dd602b1cb08e026a478a80966a5c5a83);
+        
+    
+            var icon_f6c30ba17dd0a636b8261211a2f56a94 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_11eb729f0630e26c544ee08735032124 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e41a475e87e190190098948c0c447979 = $(`<div id="html_e41a475e87e190190098948c0c447979" style="width: 100.0%; height: 100.0%;">         <b>The Kiwi Grand</b><br>         ⭐ N/A étoiles<br>         📍 New Zealand         </div>`)[0];
+                popup_11eb729f0630e26c544ee08735032124.setContent(html_e41a475e87e190190098948c0c447979);
+            
+        
+
+        marker_e4cbf26fd86fa06b447d4a652a0ec1b4.bindPopup(popup_11eb729f0630e26c544ee08735032124)
+        ;
+
+        
+    
+    
+                marker_e4cbf26fd86fa06b447d4a652a0ec1b4.setIcon(icon_f6c30ba17dd0a636b8261211a2f56a94);
+            
+</script>
+</html>

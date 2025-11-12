@@ -4,6 +4,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import pandas as pd
+import folium
 from utils.get_data import charger_csvs
 from utils.common_functions import telecharger_dataset
 
@@ -124,6 +125,66 @@ def tracer_histogramme_proprete(dataframes: dict[str, pd.DataFrame]) -> None:
     finally:
         plt.close(fig)
 
+
+def generer_carte_hotels(dataframes: dict[str, pd.DataFrame]) -> None:
+    """
+    Génère une carte interactive des hôtels à partir de leurs coordonnées géographiques.
+    Les points sont placés en fonction des colonnes 'lat' et 'lon' du fichier hotels.csv.
+    """
+    df_hotels = dataframes.get("hotels.csv")
+    if df_hotels is None:
+        print("Erreur : le DataFrame 'hotels.csv' est introuvable.")
+        return
+
+    # Vérifier la présence des colonnes nécessaires
+    if "lat" not in df_hotels.columns or "lon" not in df_hotels.columns:
+        print("Erreur : les colonnes 'lat' et 'lon' sont requises pour générer la carte.")
+        return
+
+    # Nettoyage des coordonnées
+    df_hotels["lat"] = pd.to_numeric(df_hotels["lat"], errors="coerce")
+    df_hotels["lon"] = pd.to_numeric(df_hotels["lon"], errors="coerce")
+    df_valid = df_hotels.dropna(subset=["lat", "lon"])
+
+    if df_valid.empty:
+        print("Aucune donnée géographique valide trouvée dans hotels.csv.")
+        return
+
+    # Calcul du centre de la carte
+    lat_moy = df_valid["lat"].mean()
+    lon_moy = df_valid["lon"].mean()
+
+    # Création de la carte
+    carte = folium.Map(location=[lat_moy, lon_moy], zoom_start=3, tiles="OpenStreetMap")
+
+    # Ajout des marqueurs pour chaque hôtel
+    for _, row in df_valid.iterrows():
+        nom = row.get("hotel_name", "Hôtel sans nom")
+        etoiles = row.get("stars", "N/A")
+        pays = row.get("country", "Inconnu")
+
+        popup_content = f"""
+        <b>{nom}</b><br>
+        ⭐ {etoiles} étoiles<br>
+        📍 {pays}
+        """
+        folium.Marker(
+            location=[row["lat"], row["lon"]],
+            popup=popup_content,
+            icon=folium.Icon(color="blue", icon="info-sign"),
+        ).add_to(carte)
+
+    # Sauvegarde
+    try:
+        out_dir = os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")), "outputs", "maps")
+        os.makedirs(out_dir, exist_ok=True)
+        out_path = os.path.join(out_dir, "carte_hotels.html")
+        carte.save(out_path)
+        print(f"Saved: {out_path}")
+    except Exception as e:
+        print(f"Warning: impossible de sauver carte_hotels.html: {e}")
+
+
 if __name__ == "__main__":
     # Télécharger le dataset (ou utiliser les CSV locaux si présents)
     chemin = telecharger_dataset("alperenmyung/international-hotel-booking-analytics")
@@ -148,3 +209,6 @@ if __name__ == "__main__":
 
     # Histogramme 3 : répartition des notes de propreté
     tracer_histogramme_proprete(dataframes)
+
+    # Carte géolocalisée des hôtels
+    generer_carte_hotels(dataframes)
