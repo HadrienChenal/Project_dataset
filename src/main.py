@@ -1,0 +1,272 @@
+import os
+import matplotlib
+# Utiliser un backend non-interactif pour générer des PNG fiables même en environnement headless
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+import pandas as pd
+import folium
+from utils.get_data import charger_csvs
+from utils.common_functions import telecharger_dataset
+import numpy as np
+
+def tracer_histogramme_notes(dataframes: dict[str, pd.DataFrame]) -> None:
+    """
+    Trace un histogramme de la répartition des notes globales des hôtels.
+    """
+     # Données
+    df_reviews = dataframes.get("reviews.csv")
+    if df_reviews is None:
+        print("Erreur : le DataFrame 'reviews.csv' est introuvable.")
+        return
+
+    df_reviews["score_overall"] = pd.to_numeric(df_reviews["score_overall"], errors="coerce")
+    df_reviews = df_reviews.dropna(subset=["score_overall"])
+
+    # Bornes arrondies au dixième et bins réguliers de 0.1
+    min_score = np.floor(df_reviews["score_overall"].min() * 10) / 10
+    max_score = np.ceil(df_reviews["score_overall"].max() * 10) / 10
+    bins = np.arange(min_score, max_score + 0.1, 0.1)
+
+    # Tracé
+    fig, ax = plt.subplots(figsize=(10, 6))
+    n, bins_used, patches = ax.hist(df_reviews["score_overall"], bins=bins,
+                                    edgecolor="black", alpha=0.7)
+
+    ax.set_title("Répartition des notes globales des hôtels")
+    ax.set_xlabel("Score global")
+    ax.set_ylabel("Nombre de clients")
+    ax.grid(True, linestyle="--", alpha=0.5)
+
+    # Ticks alignés sur les limites des barres + limites x propres
+    ax.set_xticks(bins)
+    ax.tick_params(axis="x", labelrotation=45)
+    ax.set_xlim(min_score, max_score)
+
+    # Sauvegarde (inchangée)
+    try:
+        out_dir = os.path.join(
+            os.path.abspath(os.path.join(os.path.dirname(__file__), "..")),
+            "outputs", "figures"
+        )
+        os.makedirs(out_dir, exist_ok=True)
+        fig.tight_layout()
+        out_path = os.path.join(out_dir, "hist_scores_globales.png")
+        fig.savefig(out_path, bbox_inches="tight")
+        print(f"Saved: {out_path}")
+    except Exception as e:
+        print(f"Warning: impossible de sauver hist_scores_globales.png: {e}")
+    finally:
+        plt.close(fig)
+
+    # Sauvegarder la figure dans outputs/figures pour inspection
+    try:
+        out_dir = os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")), "outputs", "figures")
+        os.makedirs(out_dir, exist_ok=True)
+        fig.tight_layout()
+        out_path = os.path.join(out_dir, "hist_scores_globales.png")
+        fig.savefig(out_path, bbox_inches="tight")
+        print(f"Saved: {out_path}")
+    except Exception as e:
+        print(f"Warning: impossible de sauver hist_scores_globales.png: {e}")
+    finally:
+        plt.close(fig)
+
+def tracer_histogramme_score_base(dataframes: dict[str, "pd.DataFrame"]) -> None:
+    """
+    Trace un histogramme de la distribution du score de base moyen par hôtel.
+    Le score de base moyen est calculé comme la moyenne des colonnes de base présentes
+    dans hotels.csv (par exemple cleanliness_base, comfort_base, facilities_base).
+    """
+    # Récupération du DataFrame des hôtels
+    df_hotels = dataframes.get("hotels.csv")
+    if df_hotels is None:
+        print("Erreur : le DataFrame 'hotels.csv' est introuvable.")
+        return
+
+    colonnes_bases = ["cleanliness_base", "comfort_base", "facilities_base"]
+    for col in colonnes_bases:
+        if col not in df_hotels.columns:
+            print(f"Erreur : la colonne '{col}' est absente du fichier hotels.csv.")
+            return
+
+    for col in colonnes_bases:
+        df_hotels[col] = pd.to_numeric(df_hotels[col], errors="coerce")
+
+    df_hotels["base_score_mean"] = df_hotels[colonnes_bases].mean(axis=1, skipna=True)
+    df_valid = df_hotels.dropna(subset=["base_score_mean"])
+    if df_valid.empty:
+        print("Aucune valeur valide pour 'base_score_mean'.")
+        return
+
+    # Définition des bornes et bins à pas de 0.1
+    min_score = np.floor(df_valid["base_score_mean"].min() * 10) / 10
+    max_score = np.ceil(df_valid["base_score_mean"].max() * 10) / 10
+    bins = np.arange(min_score, max_score + 0.1, 0.1)
+
+    # Tracé
+    fig, ax = plt.subplots(figsize=(10, 6))
+    n, bins_used, patches = ax.hist(df_valid["base_score_mean"], bins=bins,
+                                    edgecolor="black", alpha=0.75, color="steelblue")
+
+    ax.set_title("Distribution du score de base moyen par hôtel")
+    ax.set_xlabel("Score de base moyen")
+    ax.set_ylabel("Nombre d'hôtels")
+    ax.grid(True, linestyle="--", alpha=0.5)
+
+    # Ticks alignés sur les limites des barres, arrondis au dixième
+    ax.set_xticks(bins)
+    ax.set_xticklabels([f"{b:.1f}" for b in bins])
+    ax.tick_params(axis="x", labelrotation=45)
+    ax.set_xlim(min_score, max_score)
+
+    # Sauvegarder la figure
+    try:
+        out_dir = os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")), "outputs", "figures")
+        os.makedirs(out_dir, exist_ok=True)
+        fig.tight_layout()
+        out_path = os.path.join(out_dir, "hist_scores_base.png")
+        fig.savefig(out_path, bbox_inches="tight")
+        print(f"Saved: {out_path}")
+    except Exception as e:
+        print(f"Warning: impossible de sauver hist_scores_base.png: {e}")
+    finally:
+        plt.close(fig)
+
+def tracer_histogramme_proprete(dataframes: dict[str, pd.DataFrame]) -> None:
+    """
+    Trace un histogramme de la répartition des notes de propreté des hôtels.
+    Permet de visualiser la perception de la propreté dans l'ensemble des avis.
+    """
+    # Données 
+    df_reviews = dataframes.get("reviews.csv")
+    if df_reviews is None:
+        print("Erreur : le DataFrame 'reviews.csv' est introuvable.")
+        return
+
+    df_reviews["score_cleanliness"] = pd.to_numeric(df_reviews["score_cleanliness"], errors="coerce")
+    df_reviews = df_reviews.dropna(subset=["score_cleanliness"])
+    if df_reviews.empty:
+        print("Aucune valeur valide pour 'score_cleanliness'.")
+        return
+
+    # Définition des bornes et bins à pas de 0.1
+    min_score = np.floor(df_reviews["score_cleanliness"].min() * 10) / 10
+    max_score = np.ceil(df_reviews["score_cleanliness"].max() * 10) / 10
+    bins = np.arange(min_score, max_score + 0.1, 0.1)
+
+    # Tracé
+    fig, ax = plt.subplots(figsize=(10, 6))
+    n, bins_used, patches = ax.hist(df_reviews["score_cleanliness"], bins=bins,
+                                    color="orange", edgecolor="black", alpha=0.7)
+
+    ax.set_title("Répartition des notes de propreté des hôtels")
+    ax.set_xlabel("Score de propreté")
+    ax.set_ylabel("Nombre de clients")
+    ax.grid(True, linestyle="--", alpha=0.5)
+
+    # Ticks alignés sur les limites des barres, arrondis au dixième
+    ax.set_xticks(bins)
+    ax.set_xticklabels([f"{b:.1f}" for b in bins])
+    ax.tick_params(axis="x", labelrotation=45)
+    ax.set_xlim(min_score, max_score)
+
+    # Sauvegarder la figure
+    try:
+        out_dir = os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")), "outputs", "figures")
+        os.makedirs(out_dir, exist_ok=True)
+        fig.tight_layout()
+        out_path = os.path.join(out_dir, "hist_proprete.png")
+        fig.savefig(out_path, bbox_inches="tight")
+        print(f"Saved: {out_path}")
+    except Exception as e:
+        print(f"Warning: impossible de sauver hist_proprete.png: {e}")
+    finally:
+        plt.close(fig)
+
+
+def generer_carte_hotels(dataframes: dict[str, pd.DataFrame]) -> None:
+    """
+    Génère une carte interactive des hôtels à partir de leurs coordonnées géographiques.
+    Les points sont placés en fonction des colonnes 'lat' et 'lon' du fichier hotels.csv.
+    """
+    df_hotels = dataframes.get("hotels.csv")
+    if df_hotels is None:
+        print("Erreur : le DataFrame 'hotels.csv' est introuvable.")
+        return
+
+    # Vérifier la présence des colonnes nécessaires
+    if "lat" not in df_hotels.columns or "lon" not in df_hotels.columns:
+        print("Erreur : les colonnes 'lat' et 'lon' sont requises pour générer la carte.")
+        return
+
+    # Nettoyage des coordonnées
+    df_hotels["lat"] = pd.to_numeric(df_hotels["lat"], errors="coerce")
+    df_hotels["lon"] = pd.to_numeric(df_hotels["lon"], errors="coerce")
+    df_valid = df_hotels.dropna(subset=["lat", "lon"])
+
+    if df_valid.empty:
+        print("Aucune donnée géographique valide trouvée dans hotels.csv.")
+        return
+
+    # Calcul du centre de la carte
+    lat_moy = df_valid["lat"].mean()
+    lon_moy = df_valid["lon"].mean()
+
+    # Création de la carte
+    carte = folium.Map(location=[lat_moy, lon_moy], zoom_start=3, tiles="OpenStreetMap")
+
+    # Ajout des marqueurs pour chaque hôtel
+    for _, row in df_valid.iterrows():
+        nom = row.get("hotel_name", "Hôtel sans nom")
+        etoiles = row.get("stars", "N/A")
+        pays = row.get("country", "Inconnu")
+
+        popup_content = f"""
+        <b>{nom}</b><br>
+        ⭐ {etoiles} étoiles<br>
+        📍 {pays}
+        """
+        folium.Marker(
+            location=[row["lat"], row["lon"]],
+            popup=popup_content,
+            icon=folium.Icon(color="blue", icon="info-sign"),
+        ).add_to(carte)
+
+    # Sauvegarde
+    try:
+        out_dir = os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")), "outputs", "maps")
+        os.makedirs(out_dir, exist_ok=True)
+        out_path = os.path.join(out_dir, "carte_hotels.html")
+        carte.save(out_path)
+        print(f"Saved: {out_path}")
+    except Exception as e:
+        print(f"Warning: impossible de sauver carte_hotels.html: {e}")
+
+
+if __name__ == "__main__":
+    # Télécharger le dataset (ou utiliser les CSV locaux si présents)
+    chemin = telecharger_dataset("alperenmyung/international-hotel-booking-analytics")
+
+    # Charger tous les CSV
+    dataframes = charger_csvs(chemin)
+
+    # Dossier de sortie pour les figures (utile si l'affichage interactif ne s'ouvre pas)
+    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    output_dir = os.path.join(project_root, "outputs", "figures")
+    os.makedirs(output_dir, exist_ok=True)
+
+    # Diagnostic : backend matplotlib et clés chargées
+    print(f"Matplotlib backend: {plt.get_backend()}")
+    print(f"Fichiers chargés: {list(dataframes.keys())}")
+
+    # Histogramme 1 : notes globales
+    tracer_histogramme_notes(dataframes)
+
+    # Histogramme 2 : répartition des scores de base
+    tracer_histogramme_score_base(dataframes)
+
+    # Histogramme 3 : répartition des notes de propreté
+    tracer_histogramme_proprete(dataframes)
+
+    # Carte géolocalisée des hôtels
+    generer_carte_hotels(dataframes)

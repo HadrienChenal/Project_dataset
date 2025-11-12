@@ -21,16 +21,19 @@ def ensure_directories(path: str) -> None:
     """
     os.makedirs(path, exist_ok=True)
 
-
 def telecharger_dataset(nom_dataset: str) -> str:
     """
     Télécharge (ou récupère depuis le cache) un dataset Kaggle via kagglehub.
     Retourne le chemin du dossier contenant les fichiers CSV.
     param nom_dataset: Nom du dataset Kaggle (format "utilisateur/dataset").
     """
+    # Si des CSV nettoyés sont présents localement, les utiliser en priorité
+    if os.path.isdir(CLEAN_DATA_PATH):
+        csvs = [f for f in os.listdir(CLEAN_DATA_PATH) if f.endswith('.csv')]
+        if csvs:
+            print(f"Utilisation des données locales dans {CLEAN_DATA_PATH}")
+            return CLEAN_DATA_PATH
+
+    # Sinon tenter de télécharger via kagglehub (peut nécessiter configuration Kaggle)
     path = kagglehub.dataset_download(nom_dataset)
     return path
-
-
-
-
