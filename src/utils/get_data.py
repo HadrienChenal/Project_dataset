@@ -1,6 +1,5 @@
 import os
 import pandas as pd
-import kagglehub
 
 def charger_csvs(path: str) -> dict[str, pd.DataFrame]:
     """
@@ -19,9 +18,5 @@ def charger_csvs(path: str) -> dict[str, pd.DataFrame]:
         if csv_file.startswith("cleaned_"):
             key = csv_file[len("cleaned_"):]
         dfs[key] = df
-<<<<<<< HEAD
     return dfs
 
-=======
-    return dfs
->>>>>>> main
