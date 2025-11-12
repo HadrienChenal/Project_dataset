@@ -7,27 +7,56 @@ import pandas as pd
 import folium
 from utils.get_data import charger_csvs
 from utils.common_functions import telecharger_dataset
+import numpy as np
 
 def tracer_histogramme_notes(dataframes: dict[str, pd.DataFrame]) -> None:
     """
     Trace un histogramme de la répartition des notes globales des hôtels.
     """
-    # Clé correcte pour accéder aux reviews
+     # Données
     df_reviews = dataframes.get("reviews.csv")
     if df_reviews is None:
         print("Erreur : le DataFrame 'reviews.csv' est introuvable.")
         return
 
-    # Nettoyage et affichage
     df_reviews["score_overall"] = pd.to_numeric(df_reviews["score_overall"], errors="coerce")
     df_reviews = df_reviews.dropna(subset=["score_overall"])
 
+    # Bornes arrondies au dixième et bins réguliers de 0.1
+    min_score = np.floor(df_reviews["score_overall"].min() * 10) / 10
+    max_score = np.ceil(df_reviews["score_overall"].max() * 10) / 10
+    bins = np.arange(min_score, max_score + 0.1, 0.1)
+
+    # Tracé
     fig, ax = plt.subplots(figsize=(10, 6))
-    ax.hist(df_reviews["score_overall"], bins=20, edgecolor="black", alpha=0.7)
+    n, bins_used, patches = ax.hist(df_reviews["score_overall"], bins=bins,
+                                    edgecolor="black", alpha=0.7)
+
     ax.set_title("Répartition des notes globales des hôtels")
     ax.set_xlabel("Score global")
     ax.set_ylabel("Nombre de clients")
     ax.grid(True, linestyle="--", alpha=0.5)
+
+    # Ticks alignés sur les limites des barres + limites x propres
+    ax.set_xticks(bins)
+    ax.tick_params(axis="x", labelrotation=45)
+    ax.set_xlim(min_score, max_score)
+
+    # Sauvegarde (inchangée)
+    try:
+        out_dir = os.path.join(
+            os.path.abspath(os.path.join(os.path.dirname(__file__), "..")),
+            "outputs", "figures"
+        )
+        os.makedirs(out_dir, exist_ok=True)
+        fig.tight_layout()
+        out_path = os.path.join(out_dir, "hist_scores_globales.png")
+        fig.savefig(out_path, bbox_inches="tight")
+        print(f"Saved: {out_path}")
+    except Exception as e:
+        print(f"Warning: impossible de sauver hist_scores_globales.png: {e}")
+    finally:
+        plt.close(fig)
 
     # Sauvegarder la figure dans outputs/figures pour inspection
     try:
@@ -54,29 +83,41 @@ def tracer_histogramme_score_base(dataframes: dict[str, "pd.DataFrame"]) -> None
         print("Erreur : le DataFrame 'hotels.csv' est introuvable.")
         return
 
-    # Vérification des colonnes nécessaires
     colonnes_bases = ["cleanliness_base", "comfort_base", "facilities_base"]
     for col in colonnes_bases:
         if col not in df_hotels.columns:
             print(f"Erreur : la colonne '{col}' est absente du fichier hotels.csv.")
             return
 
-    # Conversion en numérique et calcul du score moyen
     for col in colonnes_bases:
         df_hotels[col] = pd.to_numeric(df_hotels[col], errors="coerce")
 
     df_hotels["base_score_mean"] = df_hotels[colonnes_bases].mean(axis=1, skipna=True)
-
-    # Suppression des valeurs manquantes
     df_valid = df_hotels.dropna(subset=["base_score_mean"])
+    if df_valid.empty:
+        print("Aucune valeur valide pour 'base_score_mean'.")
+        return
 
-    # Tracé de l'histogramme
+    # Définition des bornes et bins à pas de 0.1
+    min_score = np.floor(df_valid["base_score_mean"].min() * 10) / 10
+    max_score = np.ceil(df_valid["base_score_mean"].max() * 10) / 10
+    bins = np.arange(min_score, max_score + 0.1, 0.1)
+
+    # Tracé
     fig, ax = plt.subplots(figsize=(10, 6))
-    ax.hist(df_valid["base_score_mean"], bins=20, edgecolor="black", alpha=0.75, color="steelblue")
+    n, bins_used, patches = ax.hist(df_valid["base_score_mean"], bins=bins,
+                                    edgecolor="black", alpha=0.75, color="steelblue")
+
     ax.set_title("Distribution du score de base moyen par hôtel")
     ax.set_xlabel("Score de base moyen")
     ax.set_ylabel("Nombre d'hôtels")
     ax.grid(True, linestyle="--", alpha=0.5)
+
+    # Ticks alignés sur les limites des barres, arrondis au dixième
+    ax.set_xticks(bins)
+    ax.set_xticklabels([f"{b:.1f}" for b in bins])
+    ax.tick_params(axis="x", labelrotation=45)
+    ax.set_xlim(min_score, max_score)
 
     # Sauvegarder la figure
     try:
@@ -96,21 +137,38 @@ def tracer_histogramme_proprete(dataframes: dict[str, pd.DataFrame]) -> None:
     Trace un histogramme de la répartition des notes de propreté des hôtels.
     Permet de visualiser la perception de la propreté dans l'ensemble des avis.
     """
+    # Données 
     df_reviews = dataframes.get("reviews.csv")
     if df_reviews is None:
         print("Erreur : le DataFrame 'reviews.csv' est introuvable.")
         return
 
-    # Conversion et nettoyage
     df_reviews["score_cleanliness"] = pd.to_numeric(df_reviews["score_cleanliness"], errors="coerce")
     df_reviews = df_reviews.dropna(subset=["score_cleanliness"])
+    if df_reviews.empty:
+        print("Aucune valeur valide pour 'score_cleanliness'.")
+        return
 
+    # Définition des bornes et bins à pas de 0.1
+    min_score = np.floor(df_reviews["score_cleanliness"].min() * 10) / 10
+    max_score = np.ceil(df_reviews["score_cleanliness"].max() * 10) / 10
+    bins = np.arange(min_score, max_score + 0.1, 0.1)
+
+    # Tracé
     fig, ax = plt.subplots(figsize=(10, 6))
-    ax.hist(df_reviews["score_cleanliness"], bins=20, color="orange", edgecolor="black", alpha=0.7)
+    n, bins_used, patches = ax.hist(df_reviews["score_cleanliness"], bins=bins,
+                                    color="orange", edgecolor="black", alpha=0.7)
+
     ax.set_title("Répartition des notes de propreté des hôtels")
     ax.set_xlabel("Score de propreté")
     ax.set_ylabel("Nombre de clients")
     ax.grid(True, linestyle="--", alpha=0.5)
+
+    # Ticks alignés sur les limites des barres, arrondis au dixième
+    ax.set_xticks(bins)
+    ax.set_xticklabels([f"{b:.1f}" for b in bins])
+    ax.tick_params(axis="x", labelrotation=45)
+    ax.set_xlim(min_score, max_score)
 
     # Sauvegarder la figure
     try:
