@@ -19,3 +19,4 @@ def charger_csvs(path: str) -> dict[str, pd.DataFrame]:
             key = csv_file[len("cleaned_"):]
         dfs[key] = df
     return dfs
+
