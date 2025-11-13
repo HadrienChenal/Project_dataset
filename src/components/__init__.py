@@ -4,11 +4,11 @@ Package des composants Dash réutilisables.
 from .header import create_header
 from .navbar import create_navbar
 from .footer import create_footer
-from .component1 import (
+from .histogrammes import (
     tracer_histogramme_notes,
     tracer_histogramme_proprete,
 )
-from .component2 import (
+from .cartes import (
     generer_carte_hotels
 )
 

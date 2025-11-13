@@ -2,7 +2,7 @@
 Page d'analyses - histogrammes et statistiques.
 """
 from dash import html, dcc
-from src.components.component1 import (
+from src.components.histogrammes import (
     tracer_histogramme_notes,
     tracer_histogramme_proprete,
 )

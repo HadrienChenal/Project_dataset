@@ -15,10 +15,11 @@ import pandas as pd
 # Ajouter le répertoire src au path pour les imports
 sys.path.insert(0, os.path.join(os.path.dirname(__file__)))
 
+from src.pages import analyse, geographie
 from src.components.header import create_header
 from src.components.navbar import create_navbar
 from src.components.footer import create_footer
-from src.pages import home, simple_page, about
+from src.pages import home
 from src.utils.get_data import charger_csvs
 from src.utils.common_functions import RAW_DATA_PATH
 
@@ -86,9 +87,9 @@ app.layout = html.Div([
 def display_page(pathname):
     """Affiche la bonne page selon l'URL."""
     if pathname == '/analytics':
-        return simple_page.layout(dataframes)
+        return analyse.layout(dataframes)
     elif pathname == '/maps':
-        return about.layout(dataframes)
+        return geographie.layout(dataframes)
     else:  # '/' ou autre
         return home.layout(dataframes)
 

@@ -4,7 +4,7 @@ Affiche un résumé des données et des KPIs.
 """
 import pandas as pd
 from dash import html, dcc
-from src.components.component1 import tracer_histogramme_notes, tracer_histogramme_proprete
+from src.components.histogrammes import tracer_histogramme_notes, tracer_histogramme_proprete
 
 def layout(dataframes: dict):
     """Crée la page d'accueil."""

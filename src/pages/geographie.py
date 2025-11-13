@@ -2,7 +2,7 @@
 Page de cartes géographiques.
 """
 from dash import html
-from src.components.component2 import (
+from src.components.cartes import (
     generer_carte_hotels,
     
 )
