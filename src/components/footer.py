@@ -8,12 +8,13 @@ def create_footer():
     return html.Div([
         html.Hr(),
         html.P(
-            '© 2025 Hotel Booking Analytics Dashboard | Données Kaggle: International Hotel Booking Analytics',
+            '© 2025 Hotel Booking Analytics Dashboard | Données Kaggle: International Hotel Booking Analytics | Créé par Rayan ABD EL MEGUID, Hadrien CHENAL, Alexandre COULIBALY',
+            
             style={
                 'textAlign': 'center',
                 'color': '#999',
                 'fontSize': '12px',
-                'marginTop': '30px',
+                'marginTop': '10px',
                 'marginBottom': '10px'
             }
         )
