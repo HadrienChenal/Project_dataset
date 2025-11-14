@@ -9,7 +9,8 @@ from .histogrammes import (
     tracer_histogramme_proprete,
 )
 from .cartes import (
-    generer_carte_hotels
+    generer_carte_hotels,
+    tracer_carte_utilisateurs,
 )
 
 __all__ = [

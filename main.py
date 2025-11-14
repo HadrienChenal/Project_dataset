@@ -9,7 +9,7 @@ Utilisation:
 
 import os
 import sys
-from dash import Dash, html, dcc, Input, Output, callback
+from dash import Dash, html, Input, Output, callback
 import pandas as pd
 
 # Ajouter le répertoire src au path pour les imports
@@ -32,19 +32,19 @@ def load_data():
     try:
         dataframes = charger_csvs(RAW_DATA_PATH)
         if not dataframes:
-            print(f"⚠️  Aucun CSV trouvé dans {RAW_DATA_PATH}. Utilisation du dossier local 'data/'.")
+            print(f"Aucun CSV trouvé dans {RAW_DATA_PATH}. Utilisation du dossier local 'data/'.")
             # Fallback : chercher dans data/ local
             if os.path.exists('data'):
                 dataframes = charger_csvs('data')
         return dataframes
     except Exception as e:
-        print(f"❌ Erreur lors du chargement des données: {e}")
+        print(f"Erreur lors du chargement des données: {e}")
         return {}
 
 dataframes = load_data()
 
 if not dataframes:
-    print("⚠️  Aucune donnée n'a pu être chargée. Assurez-vous que les fichiers CSV sont présents.")
+    print("Aucune donnée n'a pu être chargée. Assurez-vous que les fichiers CSV sont présents.")
     dataframes = {
         'hotels.csv': pd.DataFrame(),
         'reviews.csv': pd.DataFrame(),
