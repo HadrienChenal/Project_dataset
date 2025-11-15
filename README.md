@@ -183,19 +183,32 @@ Nous avons une architecture classique :
 ### Racine du projet 
 
 - .gitignore : Ce fichier permet d'exclure certains dossiers/fichiers temporaires.
-- config.py : Configuration principal. Il regroupe toutes les constantes globales du projet.
 - requirements.txt : Liste de package Python nécessaire au bon fonctionnement du projet. Il garantit que l'environnement possède toutes les dépendances adéquates.
 - images : Dossier regroupant les images pour le README.
 - video.mp4 : Video de démonstration du dashboard.
 - main.py : Script principal permettant de lancer le dashboard.
+- README.md :
+- data : 
 
 ### Dossier data : les données du projet
 
 - raw : Dossier comportant les tableaux CSV récupérées depuis Kaggle.
-- cleaned : Dossier comportant les tableaux nettoyés CSV. 
+- cleaned : Dossier comportant les tableaux nettoyés CSV.
 
+### Dossier src : Code source du dashboard
+Il regroupe tout le code Python lié au dashboard et est divisé en sous-modules pour une meilleure organisation. 
 
-**Developer Guide**
+header.py : en-tête du site
+
+navbar.py : barre de navigation
+
+footer.py : pied de page
+
+histogrammes.py : graphiques personnalisés
+
+cartes.py : cartes interactives
+
+### Représentation graphique
 
 ```mermaid
 graph TD
