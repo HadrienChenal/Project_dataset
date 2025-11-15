@@ -11,6 +11,7 @@ from utils.get_data import charger_csvs
 from utils.common_functions import telecharger_dataset
 import numpy as np
 
+
 def tracer_histogramme_notes(dataframes: dict[str, pd.DataFrame]) -> None:
     """
     Trace un histogramme de la répartition des notes globales des hôtels.
@@ -59,6 +60,7 @@ def tracer_histogramme_notes(dataframes: dict[str, pd.DataFrame]) -> None:
         print(f"Warning: impossible de sauver hist_scores_globales.png: {e}")
     finally:
         plt.close(fig)
+
 
 def tracer_histogramme_score_base(dataframes: dict[str, "pd.DataFrame"]) -> None:
     """
@@ -123,6 +125,7 @@ def tracer_histogramme_score_base(dataframes: dict[str, "pd.DataFrame"]) -> None
     finally:
         plt.close(fig)
 
+
 def tracer_histogramme_proprete(dataframes: dict[str, pd.DataFrame]) -> None:
     """
     Trace un histogramme de la répartition des notes de propreté des hôtels.
@@ -172,6 +175,153 @@ def tracer_histogramme_proprete(dataframes: dict[str, pd.DataFrame]) -> None:
     finally:
         plt.close(fig)
 
+
+# ======= NOUVELLES FONCTIONS D'HISTOGRAMMES =======
+
+def tracer_histogramme_confort(dataframes: dict[str, pd.DataFrame]) -> None:
+    """
+    Trace un histogramme de la répartition des notes de confort des hôtels.
+    """
+    df_reviews = dataframes.get("reviews.csv")
+    if df_reviews is None:
+        print("Erreur : le DataFrame 'reviews.csv' est introuvable.")
+        return
+
+    df_reviews["score_comfort"] = pd.to_numeric(df_reviews["score_comfort"], errors="coerce")
+    df_reviews = df_reviews.dropna(subset=["score_comfort"])
+    if df_reviews.empty:
+        print("Aucune valeur valide pour 'score_comfort'.")
+        return
+
+    min_score = np.floor(df_reviews["score_comfort"].min() * 10) / 10
+    max_score = np.ceil(df_reviews["score_comfort"].max() * 10) / 10
+    bins = np.arange(min_score, max_score + 0.1, 0.1)
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+    n, bins_used, patches = ax.hist(
+        df_reviews["score_comfort"], bins=bins, edgecolor="black", alpha=0.7
+    )
+
+    ax.set_title("Répartition des notes de confort")
+    ax.set_xlabel("Score confort")
+    ax.set_ylabel("Nombre de clients")
+    ax.grid(True, linestyle="--", alpha=0.5)
+
+    ax.set_xticks(bins)
+    ax.set_xticklabels([f"{b:.1f}" for b in bins])
+    ax.tick_params(axis="x", labelrotation=45)
+    ax.set_xlim(min_score, max_score)
+
+    try:
+        out_dir = os.path.join(
+            os.path.abspath(os.path.join(os.path.dirname(__file__), "..")),
+            "outputs", "figures"
+        )
+        os.makedirs(out_dir, exist_ok=True)
+        fig.tight_layout()
+        out_path = os.path.join(out_dir, "hist_confort.png")
+        fig.savefig(out_path, bbox_inches="tight")
+        print(f"Saved: {out_path}")
+    except Exception as e:
+        print(f"Warning: impossible de sauver hist_confort.png : {e}")
+    finally:
+        plt.close(fig)
+
+
+def tracer_histogramme_installations(dataframes: dict[str, pd.DataFrame]) -> None:
+    """
+    Trace un histogramme de la répartition des notes d'installations.
+    """
+    df_reviews = dataframes.get("reviews.csv")
+    if df_reviews is None:
+        print("Erreur : le DataFrame 'reviews.csv' est introuvable.")
+        return
+
+    df_reviews["score_facilities"] = pd.to_numeric(df_reviews["score_facilities"], errors="coerce")
+    df_reviews = df_reviews.dropna(subset=["score_facilities"])
+    if df_reviews.empty:
+        print("Aucune valeur valide pour 'score_facilities'.")
+        return
+
+    min_score = np.floor(df_reviews["score_facilities"].min() * 10) / 10
+    max_score = np.ceil(df_reviews["score_facilities"].max() * 10) / 10
+    bins = np.arange(min_score, max_score + 0.1, 0.1)
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+    ax.hist(df_reviews["score_facilities"], bins=bins, edgecolor="black", alpha=0.7)
+
+    ax.set_title("Répartition des notes des installations")
+    ax.set_xlabel("Score installations")
+    ax.set_ylabel("Nombre de clients")
+    ax.grid(True, linestyle="--", alpha=0.5)
+
+    ax.set_xticks(bins)
+    ax.set_xticklabels([f"{b:.1f}" for b in bins])
+    ax.tick_params(axis="x", labelrotation=45)
+    ax.set_xlim(min_score, max_score)
+
+    try:
+        out_dir = os.path.join(
+            os.path.abspath(os.path.join(os.path.dirname(__file__), "..")),
+            "outputs", "figures"
+        )
+        os.makedirs(out_dir, exist_ok=True)
+        fig.tight_layout()
+        out_path = os.path.join(out_dir, "hist_installations.png")
+        fig.savefig(out_path, bbox_inches="tight")
+        print(f"Saved: {out_path}")
+    except Exception as e:
+        print(f"Warning: impossible de sauver hist_installations.png : {e}")
+    finally:
+        plt.close(fig)
+
+
+def tracer_histogramme_emplacement(dataframes: dict[str, pd.DataFrame]) -> None:
+    """
+    Trace un histogramme de la répartition des notes d'emplacement.
+    """
+    df_reviews = dataframes.get("reviews.csv")
+    if df_reviews is None:
+        print("Erreur : le DataFrame 'reviews.csv' est introuvable.")
+        return
+
+    df_reviews["score_location"] = pd.to_numeric(df_reviews["score_location"], errors="coerce")
+    df_reviews = df_reviews.dropna(subset=["score_location"])
+    if df_reviews.empty:
+        print("Aucune valeur valide pour 'score_location'.")
+        return
+
+    min_score = np.floor(df_reviews["score_location"].min() * 10) / 10
+    max_score = np.ceil(df_reviews["score_location"].max() * 10) / 10
+    bins = np.arange(min_score, max_score + 0.1, 0.1)
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+    ax.hist(df_reviews["score_location"], bins=bins, edgecolor="black", alpha=0.7)
+
+    ax.set_title("Répartition des notes d'emplacement")
+    ax.set_xlabel("Score emplacement")
+    ax.set_ylabel("Nombre de clients")
+    ax.grid(True, linestyle="--", alpha=0.5)
+
+    ax.set_xticks(bins)
+    ax.set_xticklabels([f"{b:.1f}" for b in bins])
+    ax.tick_params(axis="x", labelrotation=45)
+    ax.set_xlim(min_score, max_score)
+
+    try:
+        out_dir = os.path.join(
+            os.path.abspath(os.path.join(os.path.dirname(__file__), "..")),
+            "outputs", "figures"
+        )
+        os.makedirs(out_dir, exist_ok=True)
+        fig.tight_layout()
+        out_path = os.path.join(out_dir, "hist_emplacement.png")
+        fig.savefig(out_path, bbox_inches="tight")
+        print(f"Saved: {out_path}")
+    except Exception as e:
+        print(f"Warning: impossible de sauver hist_emplacement.png : {e}")
+    finally:
+        plt.close(fig)
 
 def generer_carte_hotels(dataframes: dict[str, pd.DataFrame]) -> None:
     """
@@ -380,6 +530,15 @@ if __name__ == "__main__":
 
     # Histogramme 3 : répartition des notes de propreté
     tracer_histogramme_proprete(dataframes)
+
+    # Histogramme 4 : répartition des notes de confort
+    tracer_histogramme_confort(dataframes)
+
+    # Histogramme 5 : répartition des notes des installations
+    tracer_histogramme_installations(dataframes)
+
+    # Histogramme 6 : répartition des notes d'emplacement
+    tracer_histogramme_emplacement(dataframes)
 
     # Carte géolocalisée des hôtels
     generer_carte_hotels(dataframes)
