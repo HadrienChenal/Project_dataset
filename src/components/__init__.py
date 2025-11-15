@@ -20,4 +20,5 @@ __all__ = [
     'tracer_histogramme_notes',
     'tracer_histogramme_proprete',
     'generer_carte_hotels',
+    'tracer_carte_utilisateurs',
 ]
