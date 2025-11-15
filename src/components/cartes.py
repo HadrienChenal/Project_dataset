@@ -159,13 +159,19 @@ def tracer_carte_utilisateurs(dataframes: dict[str, pd.DataFrame]) -> folium.Map
     carte = folium.Map(location=[20, 0], zoom_start=2)
 
     # Itération et ajout des marqueurs (avec normalisation)
+    max_users = user_counts["user_count"].max()
+    colormap = cm.LinearColormap(
+    ['blue', 'yellow', 'red'], 
+    vmin=0, 
+    vmax=max_users
+    )
+    colormap.caption = "Nombre d'utilisateurs par pays"
+    colormap.add_to(carte)
     unknown_countries = set()
     for _, row in user_counts.iterrows():
         raw_country = str(row["country"]).strip()
         country = alias.get(raw_country, raw_country)  # remplacer via alias si présent
         count = int(row["user_count"])
-        max_users = user_counts["user_count"].max()
-        colormap = cm.LinearColormap(['blue', 'yellow', 'red'], vmin=0, vmax=max_users)
         color = colormap(count)
         #carte.add_child(cm) # ajouter la légende  
         if country in coords:

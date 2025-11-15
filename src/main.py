@@ -7,8 +7,7 @@ import pandas as pd
 import folium
 import plotly.express as px
 from typing import Dict, Tuple
-from utils.get_data import charger_csvs
-from utils.common_functions import telecharger_dataset
+from utils.get_data import charger_csvs, telecharger_dataset
 import numpy as np
 
 

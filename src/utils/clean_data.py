@@ -1,12 +1,18 @@
 import os
 import pandas as pd
-from src.utils.common_functions import (
-    KAGGLE_MODEL_SLUG,
-    CLEAN_DATA_PATH,
-    DATA_FILES,
-    ensure_directories,
-    telecharger_dataset
-)
+from typing import List
+from src.utils.get_data import telecharger_dataset
+
+# Racine du projet (2 dossiers au-dessus du dossier utils)
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+
+### Dossiers de données
+DATA_DIR = os.path.join(PROJECT_ROOT, "data") # Dossier principal des données
+CLEAN_DATA_PATH = os.path.join(DATA_DIR, "cleaned") # Chemins vers les données nettoyées
+
+# Lien CSV des données
+KAGGLE_MODEL_SLUG = "alperenmyung/international-hotel-booking-analytics" # Lien du jeu de données
+DATA_FILES: List[str] = ["hotels.csv", "users.csv", "reviews.csv"] # Liste des fichiers de données
 
 ####### CLEANING FUNCTIONS ########
 
@@ -87,6 +93,7 @@ def process_data() -> None:
     """
     Charge, nettoie et sauvegarde chaque fichier CSV.
     """
+    os.makedirs(CLEAN_DATA_PATH, exist_ok=True)
     for filename in DATA_FILES:
         cleaned_path = os.path.join(CLEAN_DATA_PATH, filename)
 
@@ -117,7 +124,7 @@ def process_data() -> None:
         cleaned_name = f"cleaned_{filename}"
         cleaned_path = os.path.join(CLEAN_DATA_PATH, cleaned_name)
 
-        # 4. Sauvegarde des données nettoyées dans un nouveau dossier
+        # 4. Vérification
         try:
             df_cleaned.to_csv(cleaned_path, index=False)
             print(f"fichier nettoyé sauvegardé : {cleaned_path}")
@@ -126,8 +133,5 @@ def process_data() -> None:
             
     print("\nProcessus de nettoyage des données terminé.")
 
-
-# --- Point d'entrée principal ---
 if __name__ == "__main__":
-    ensure_directories(CLEAN_DATA_PATH)
     process_data()
