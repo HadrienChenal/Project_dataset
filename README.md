@@ -339,6 +339,9 @@ graph TD
 Tout d'abord, nous avons réalisé 2 cartes : une représentant les lieux où sont localisés les hôtels particuliers et une autre montrant cette fois-ci le nombre de voyageurs par pays qui sont partis dans ces différents hôtels : 
 
 
+![Cartes_hotels](images/cartes_hotels.png)
+
+![Cartes_users](images/cartes_users.png)
 
 
 --> On remarque alors une forte concentration des hôtels riches dans l'Ouest de l'Europe et en Asie de l'Est.
