@@ -83,12 +83,6 @@ Avant d'utiliser les données pour réaliser notre dashboard, nous devons stocke
 
 Cette structure permet de pouvoir gérer les deux fonctions indépendamment l'un de l'autre.
 
-### Prélude : common_function.py 
-
-Avant de commencer tout cela, on va définir un module particulier, nommé common_functions.py. 
-Ce fichier centralise les constantes, chemins et fonctions utilitaires partagés par tout le pipeline de données. Il servira ainsi de socle commun aux différents modules get_data.py et clean_data.py pour garantir la fluidité du projet. Ce découpage permet à la fois d'avoir des fonctions polyvalentes et plus lisibles, où chacune possède sa tâche spécifique. 
-
-
 #### Variables globales
 
 On définit d'abord plusieurs variables globales, qui seront utiles à travers nos 2 principaux modules : 
@@ -117,6 +111,11 @@ On vient également définir 2 fonctions, qui l'on utilisera pour les 2 fichiers
 ### get_data : 
 
 get_data.py a pour objectif de télécharger le dataset, puis copier tous les fichiers CSV dans un répertoire local. On définit une fonction charger_csvs(), sans paramètre ni retour, qui nous permettra de charger nos fichiers dans le dossier data/raw.
+
+- PROJECT_ROOT : Cette variable est spécifique ; elle se positionne automatiquement à la racine du projet, quel que soit le dossier depuis lequel le code est exécuté. En effet, les appels de fonctions généralement se font au sein d'une même pipeline et de ce fait, leurs effets se limitent à cette dernière. En forçant la constante à commencer à un point précis, on s'assure alors à ce que la création de fichiers soit positionné correctement.
+
+-  DATA_DIR : Constante qui s'assure de créer le chemin vers le dossier "data" à partir de la racine du projet. 
+-  RAW_DATA_PATH : Constante qui s'assure de créer le chemin vers le sous-dossier "data/raw/".
 
 (charger image de la fonction)
 
