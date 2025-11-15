@@ -125,12 +125,19 @@ get_data.py a pour objectif de télécharger le dataset, puis copier tous les fi
 - On réalise ensuite un parcours de boucle : pour chaque fichier CSV se trouvant dans notre dossier, on le copie et le placer dans notre dossier se trouvant dans le chemin RAW_DATA_PATH.
 - Si une erreur survient, l'exception est capturée et un message d'erreur est affiché.
 
-==> On récupère ainsi les tableaux d'analyse. 
+<strong> ==> On récupère ainsi l’ensemble des CSV bruts téléchargés.</strong>
 
 ### clean_data : 
 
+clean_data.py a pour objectif de charger les fichiers CSV bruts, de les nettoyer en appliquant des règles spécifiques à chaque tableau, puis d’enregistrer les résultats dans un dossier data/cleaned. Pour cela, on définit une fonction principale process_data(), sans paramètre ni valeur de retour, qui orchestre toute la procédure de nettoyage.
 
-*(Explique ici les données utilisées : sources, structure, prétraitement, localisation des fichiers, etc.)*
+- Comme dans get_data.py, on importe les variables importantes et les fonctions utilitaires depuis common_functions.py (chemins des dossiers, noms de fichiers, fonction de téléchargement…).
+- On définit individuellement des fonctions dédiées au nettoyage des 3 tableaux CSV (clean_hotels(), clean_users(), clean_reviews()).
+- Pour chaque fichier : On récupère le dataset via telecharger_dataset(KAGGLE_MODEL_SLUG) et le fichier CSV correspondant est lu depuis ce dossier téléchargé.
+- On définit un dictionnaire CLEANING_FUNCTIONS qui associe chaque nom de fichier à une fonction de nettoyage dédiée : clean_hotels(), clean_users(), clean_reviews()
+- Une fois le DataFrame nettoyé, il est enregistré dans un nouveau fichier CSV, sous un nouveau de type "cleaned_<nom-du-tableur-original>". Ces fichiers sont placés dans le répertoire défini par CLEAN_DATA_PATH.
+
+<strong> ==> À l’issue de l’exécution du script, nous disposons alors de versions nettoyées, homogènes, prêtes pour les analyses et la construction du dashboard déposées dans un dossier data/cleaned. </strong>
 
 # Developer Guide
 
