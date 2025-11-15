@@ -11,21 +11,19 @@ L’objectif est d’explorer et de visualiser les tendances du secteur hôtelie
 
 Le tourisme joue un rôle clé dans l’économie mondiale et dans la vitalité des territoires. Grâce à l’analyse des données de réservations hôtelières internationales, ce projet aide à mieux comprendre les habitudes de voyage, les périodes de forte affluence et les comportements des clients. Ces analyses contribuent à un tourisme plus durable et plus responsable, au bénéfice des voyageurs et des communautés locales.
 <br><br>
-De plus, les voyageurs aujourd'hui recherchent avant tout une expérience de luxe, alliant confort, service de qualité et moments mémorables. Ils souhaitent vivre des séjours uniques, conçus pour répondre à leurs envies et valoriser pleinement leur temps libre. Cette quête d'exclusivité fait du tourisme haut de gamme un pilier important de l'économie mondiale.
+De plus, les voyageurs aujourd'hui recherchent avant tout <strong>une expérience de luxe</strong>, alliant confort, service de qualité et moments mémorables. Ils souhaitent vivre des séjours uniques, conçus pour répondre à leurs envies et valoriser pleinement leur temps libre. Cette quête d'exclusivité fait du tourisme haut de gamme un pilier important de l'économie mondiale.
 
 # User Guide
 
-Pour pouvoir utiliser le dashboard interactif, il faut : 
+Pour pouvoir utiliser le dashboard interactif : 
 
-1 - Assurez vous davoir installer en amont Python, si possible la dernière version avec pip par [ici](https://www.python.org/downloads/). Vous pouvez également le logiciel [Git](https://git-scm.com/install/).
+1 - Assurez-vous d'avoir installer en amont Python, si possible la dernière version avec pip par [ici](https://www.python.org/downloads/). Vous pouvez également installer le logiciel [Git](https://git-scm.com/install/).
 
 2 - Une fois installé, ouvrez Git Bash et clonez le projet avec l'aide des commandes : 
 
 <div class="highlight"><pre><span></span>$ git clone https://github.com/<Nom-du-repo>/Project-data.git
 cd Project_data
 </pre></div>
-
-Ou bien téléchargez directment via un dossier ZIP puis ouvrez sur un terminal dans le dossier du projet.
 
 3 - Installez les dépendances via : 
 
@@ -37,7 +35,7 @@ Ou bien téléchargez directment via un dossier ZIP puis ouvrez sur un terminal 
 <div class="highlight"><pre><span></span>python main.py
 </pre></div>
 
-le dashboard démarrera sur un lien. Ouvrez le pour obtenir le dashboard.
+Le dashboard démarrera sur un lien. Ouvrez-le pour obtenir le dashboard.
 
 # Data
 
@@ -46,7 +44,7 @@ le dashboard démarrera sur un lien. Ouvrez le pour obtenir le dashboard.
 Le dataset public regroupe des informations sur des hôtels internationaux et leurs clients. Il s'agit d'une base relationnelle composée de trois fichiers CSV : 
 
 ### hotels.csv :
-Ce fichier recense les données de 25 hôtels cinq étoiles localisées sur l'ensemble des continents. Chaque hôtel est identifié par un ID unique et accompagné de plusieurs notes de base évaluant dofférents critères de qualité : 
+Ce fichier recense les données de 25 hôtels cinq étoiles localisées sur l'ensemble des continents. Chaque hôtel est identifié par un ID unique et accompagné de plusieurs notes de base évaluant différents critères de qualité : 
 
  | **Nom du paramètre** | **Description**                                                                                                                                      |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -78,7 +76,7 @@ Ce fichier fournit des données démographiques sur les utilisateurs ayant séjo
    
                                                                                      
 ### reviews.csv :
-Ce fichiers fournit les avis et notes des clients selon l'hôtel auquel ils ont séjourné. Il est donc à la fois lié à users.csv et hotels.csv pour effectuer des analyses croisées :
+Ce fichier fournit les avis et notes des clients selon l'hôtel auquel ils ont séjourné. Il est donc à la fois lié à <i>users.csv et hotels.csv</i> pour effectuer des analyses croisées :
 
  | **Nom du paramètre** | **Description**                                                                                                                                      |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -97,7 +95,7 @@ Ce fichiers fournit les avis et notes des clients selon l'hôtel auquel ils ont 
 
 ## Traitement des données
 
-Avant d'utiliser les données pour réaliser notre dashboard, nous devons stocker et nettoyer nos tableaux de possibles erreurs. Pour ce faire, on vient alors créer deux fichiers principaux : 
+Avant d'utiliser les données pour réaliser notre dashboard, nous devons stocker et nettoyer nos tableaux pour éviter de possibles erreurs. Pour ce faire, on vient alors créer deux fichiers principaux : 
 
 - get_data.py : Fichier contenant le script de récupération des données.
 - clean_data.py : Fichier contenant le script de nettoyage des données.
@@ -124,7 +122,7 @@ get_data.py a pour objectif de télécharger le dataset, puis copier tous les fi
 - On vérifie que notre dossier "data/raw" est bien été créé.
 - On vérifie également que nos fichiers CSV n'existent pas déjà dans ces dossiers, afin d'éviter de les retélécharger.
 - Une fois ces vérifications faites, on vient tout d'abord télécharger notre dataset via la fonction de kagglehub dataset_download().
-- Enfin, on réalise un parcours de boucle : pour chaque fichier CSV se trouvant dans notre dossier, on le copie et le placer dans notre dossier se trouvant dans le chemin RAW_DATA_PATH.
+- Enfin, on réalise un parcours de boucle : pour chaque fichier CSV se trouvant dans notre dossier, on le copie et le place dans notre dossier se trouvant dans le chemin RAW_DATA_PATH.
 - Si une erreur survient, l'exception est capturée et un message d'erreur est affiché.
 - On retourne le chemin d'accès aux fichiers CSV.
 
@@ -345,71 +343,68 @@ Tout d'abord, nous avons réalisé 2 cartes : une représentant les lieux où so
 
 
 --> On remarque alors une forte concentration des hôtels riches dans l'Ouest de l'Europe et en Asie de l'Est.
---> On voit aussi que selon la cartes des voyageurs, le plus grand taux de voyegeurs partant dans les hôtels sont en Amérique et en Angleterre, contrairement à l'Afrique où on avoisine le 0. 
+--> On voit aussi que selon la cartes des voyageurs, le plus grand taux de voyegeurs partant dans les hôtels, sont en Amérique et en Angleterre, contrairement à l'Afrique où on avoisine le 0. 
 
 On peut expliquer cela pour plusieurs raisons : 
 
-- La force du dollar et de la livre sterling rend l'Europe plus accessible : en effet, les coûts européens peuvent être un avantage quant au choix des consommateurs pour leurs vacances. Dans certains pays, la vie est peu cher et donc s'offrir un voyage de luxe dans de bonnes conditions est possible.
- <br>
-- Egalement la curiosité culturelle peut jour : dans des pays comme l'Asie ou le Moyen-Orient, les clients recherchent parfois un dépaysement, une envie de changer d'envrionnement culturel, afin de garder des souvenirs. Cela est beaucoup voulu pour ceux vivant des sociétés déjà 'technologiques', de désirer une culture plus calme et exotique.
-
-Si on cherche maintenant sur la qualité des hôtels : nous avons tracé beaucoup d'histogrammes regroupant les notes que donnent les clients sur différents services : 
+- La force du dollar et de la livre sterling rend l'Europe plus accessible : en effet, les coûts européens peuvent être un avantage quant au choix des consommateurs pour leurs vacances. Dans certains pays européens, le coût de la vie est peu chère et donc, s'offrir un voyage de luxe dans de bonnes conditions est possible.
+- Egalement la curiosité culturelle peut jouer : dans des pays comme l'Asie ou le Moyen-Orient, les clients recherchent parfois un dépaysement, une envie de changer d'envrionnement culturel, afin de garder des souvenirs. Cela est beaucoup voulu pour ceux vivant dans des sociétés déjà 'technologiques', et qui désirent explorer une culture plus calme et exotique.
+<br>
+Si on cherche maintenant sur la qualité des hôtels. Nous avons tracé beaucoup d'histogrammes regroupant les notes que donnent les clients sur différents services : 
 
 **Exemples**
 
 
 ![Histogramme Notes Hotels](outputs/figures/hist_scores_base.png)
 
-Ce graphique nous donne le score original globale que les hôtels ont.
+--> Ce graphique nous donne le score original globale que les hôtels ont.
 
 ![Histogramme Notes Hotels des clients](outputs/figures/hist_scores_globales.png)
 
-Ce graphique nous montre le score global que les clients ont donné 
+--> Ce graphique nous montre le score global que les clients ont donné aux hôtels dans la globalité.
 
 ![Histogramme score propreté](outputs/figures/hist_proprete.png)
 
+--> Ce graphique nous montre le score de propreté que les client ont donné aux hôtels dans la globalité.
 
+==> De façon générale, on peut voir que les scores des hôtels sont plutôt positifs : elles varient de 8,6 à 10 avec une moyenne globale autour de 9,1. 
+Quant on regarde de plus près les histogrammes, on peut voir que les notes données par les clients tournent également autour de 9.1. On remaque que pour l'histogramme de propreté, la plage de notation est plus large, avec des notes descendant à 7,6. 
 
+Ces notes peuvent être expliquées par : 
 
+- Les exigences de haut standing des hôtels : Les hôtels 5 étoiles offrent un niveau de service et d'équipements supérieurs : chambres spacieuses, literie haut de gamme, personnel nombreux et formé, infrastructures, attention aux détails.... La satisfaction est naturellement élevée si la qualité est présente.
+- La clientèle moins exigeante : Paradoxalement, les clients sont généralement plus indulgents car ils ont tendance à vouloir justifier leur investissement. Ils sont donc plus enclins à valoriser les aspects positifs et à minimiser les défauts pour ne pas regretter leur choix.
+- Le filtrage biaisé : On peut également se demander si les hôtels auraient tendance à ne vouloir que garder les avis positifs et ainsi à supprimer les autres commentaires qui pourraient ternir leur réputation.
 
-
-
-
-
-
-
-
-(Mettre histogrammes, maps, ....) 
-
-*(Présente ici les principales conclusions issues de ton analyse de données : tendances, corrélations, résultats clés, etc.)*
+<strong> ==> Au final, on peut voir que l'économie des hôtels de luxe est un marché circulaire : le tourisme culturel et les services de luxe offrent aux clients un biais psychologique qui les forcent à profiter pleinement de leurs expériences et ainsi à ressortir heureux et détendus. Les bonnes notes reflètent une qualité réelle mais aussi créent un cercle vertueux de notation positive. Ainsi, le pouvoir du tourisme se renforce et participe au développement culturel et social du pays. </strong>
 
 # Limites / Perspectives d'avenir
 
-Même si nous sommes fiers de notre projet, on peut voir qu'il reste des points d'analyse que l'on aurait pu effecteur avec un temps plus conséquent. 
+Même si nous sommes fiers de notre projet, on peut voir qu'il reste des points d'analyse que l'on aurait pu effecteur avec un temps plus conséquent.
 
 ## Limites
 Nous avons rencontré certaines limites au cours du projet. 
 
 ### Qualité des données
-Notre jeu de données avait la chance de ne pas nécissiter d'importants nettoyages : on n'a observé ni caractères spéciaux cachés, ni conversions de colonnes douteuses ou encore de données manquantes sur les lignes. De façon générale, elle étaiet facilement exploitable et riche en information. <br>
-Seulement, certaines colonne restaient difficellement exploitables : 
+Notre jeu de données avait la chance de ne pas nécéssiter d'importants nettoyages : on n'a observé ni caractères spéciaux cachés, ni conversions de colonnes douteuses ou encore de données manquantes sur les lignes. De façon générale, elles étaient facilement exploitables et riches en information. <br>
+Seulement, certaines colonnes restaient difficilemment exploitables : 
 - hotels.csv : colonne 'star_rating' inintéressante car la même note partout, colonne 'country' avec très peu de données.
 - reviews.csv : colonne 'review_text' inexploitable car le contenu est sens dessus dessous.
 
 ### Analyses rapides
 
-Ceci engendre alors le problème suivant : malgré le faible taux de données inutiles, le reste des données montratit une redondance. Dans tous les tableaux CSV quasiment, il était question de notes sur différents critères. De plus, ces notes n'étaient pas non très variantes, allant de 7,4 et 10. Ceci nous a évidemment contraint nos analyses, qui sont alors très répétitives surtout sur nos histogrammes. Ces données étaient également les seuls à contenir des variables non catégorielles et, étant donné l'importance de celles-ci, nous devions alors réaliser ces graphiques. 
+Ceci engendre alors le problème suivant : malgré le faible taux de données inutiles, le reste des données montrait une redondance. Dans tous les tableaux CSV quasiment, il était question de notes sur différents critères. De plus, ces notes n'étaient pas très variantes, allant de 7,4 et 10. Ceci a évidemment contraint nos analyses qui sont alors très répétitives, surtout sur nos histogrammes. Ces données étaient également les seules à contenir des variables non catégorielles et, étant donné l'importance de celles-ci, nous devions alors réaliser ces graphiques. 
 
 ## Perspectives d'avenir 
 
 Avec plus de temps et de focalisation, plusieurs axes pourraient être explorées : 
 
-- Tout d'abord, nous aurions pu intégrer des nouvelles sources de données complémentaires : cela aurait permis d'enrichier et renforcer l'analyse. Par exemple, plus d'informations sur les hôtels et savoir quels sont les services qu'ils proposent, aller chercher plus d'hôtels également à analyser.
+- Tout d'abord, nous aurions pu intégrer des nouvelles sources de données complémentaires : cela aurait permis d'enrichir et renforcer notre analyse. Par exemple, plus d'informations sur les hôtels et savoir quels sont les services qu'ils proposent, aller chercher plus d'hôtels également à analyser,....
 
 - Aussi réaliser des analyses croisées plus poussées : faire un classement des hôtels préférés des utilisateurs, voir quels sont les critères les plus importants pour un hôtel de luxe, voir quels sont les périodes de l'année où les voyageurs partent le plus,....
 
 # Copyright
 
-Dans le cadre de ce projet, nous avons eu recours à GitHub Copilot, une IA intégrée à nos IDE, pour nous assister dans le développement. Même si certaines portions du code ont été générées automatiquement, la majeure partie a été écrite par nous-mêmes.
+Dans le cadre de ce projet, nous avons eu recours à des IA génératives intégrées à nos fichiers de travail, pour nous assister dans le développement. Même si certaines portions du code ont été générées automatiquement, la majeure partie a été écrite par nous-mêmes.
 
-L'architecture de l'arbrescence dans Developer Guide est repris au cours <i>E4-DSIA : Python 2, manipulation de données</i> de Daniel Courivaud, pour des raisons esthétiques.
+L'architecture de l'arbrescence dans Developer Guide est reprise du cours <i>E4-DSIA : Python 2, manipulation de données</i> de Daniel Courivaud, pour des raisons esthétiques.
