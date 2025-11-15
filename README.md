@@ -195,7 +195,53 @@ Nous avons une architecture classique :
 - cleaned : Dossier comportant les tableaux nettoyés CSV. 
 
 
-*(Décris ici l’architecture du code, les dossiers principaux, et la procédure pour ajouter une page ou un graphique au dashboard.)*
+**Developer Guide**
+
+```mermaid
+graph TD
+    subgraph Project["Paradigme: Impératif (Fonctionnel)"]
+        Main["<b>main.py</b><br/>(Entry Point)"]
+    end
+
+    subgraph Data["<b>Data Pipeline</b><br/>src/utils"]
+        GetData["get_data.py<br/>telecharger_dataset()<br/>charger_csvs()"]
+        CleanData["clean_data.py<br/>process_data()"]
+    end
+
+    subgraph Components["<b>Components</b><br/>src/components"]
+        Header["header.py"]
+        Navbar["navbar.py"]
+        Footer["footer.py"]
+        Histos["histogrammes.py<br/>6 fonctions"]
+        Maps["cartes.py<br/>2 fonctions"]
+    end
+
+    subgraph Pages["<b>Pages</b><br/>src/pages"]
+        Home["home.py"]
+        Analyse["analyse.py<br/>+ 6 histos"]
+        Geo["geographie.py<br/>+ 2 cartes"]
+    end
+
+    Main -->|1. Process| CleanData
+    CleanData -->|2. Fetch| GetData
+    GetData -->|3. Load| Main
+    
+    Main -->|4. Compose| Pages
+    Pages -->|Import| Components
+    
+    Analyse -->|Uses| Histos
+    Geo -->|Uses| Maps
+    
+    Main -->|5. Render| Header
+    Main -->|Render| Navbar
+    Main -->|Render| Pages
+    Main -->|Render| Footer
+
+    style Main fill:#01579b
+    style Data fill:#e65100
+    style Components fill:#4a148c
+    style Pages fill:#1b5e20
+```
 
 # Rapport d'analyse
 
