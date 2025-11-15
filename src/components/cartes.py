@@ -27,12 +27,28 @@ def generer_carte_hotels(dataframes: dict[str, pd.DataFrame]) -> folium.Map | No
 
     # --- Comptage visiteurs ---
     if df_users is not None and "id_hotel" in df_users.columns:
-        visiteurs_par_hotel = df_users.groupby("id_hotel").size().rename("visitors")
-        df_hotels = df_hotels.merge(visiteurs_par_hotel, left_on="id_hotel", right_index=True, how="left")
-    else:
-        df_hotels["visitors"] = None
+        visiteurs_par_hotel = (
+            df_users.groupby("id_hotel")
+            .size()
+            .rename("visitors")
+        )
+        df_hotels = df_hotels.merge(
+            visiteurs_par_hotel,
+            left_on="id_hotel",
+            right_index=True,
+            how="left",
+        )
 
-    df_hotels["visitors"] = df_hotels["visitors"].fillna(0).astype(int)
+    # Si la colonne n'existe toujours pas (pas de df_users ou pas de id_hotel)
+    if "visitors" not in df_hotels.columns:
+        df_hotels["visitors"] = 0
+
+    # 🔧 Correction du warning : conversion explicite en numérique, puis remplissage
+    df_hotels["visitors"] = (
+        pd.to_numeric(df_hotels["visitors"], errors="coerce")
+        .fillna(0)
+        .astype("int64")
+    )
 
     # Nettoyage des coordonnées
     df_hotels["lat"] = pd.to_numeric(df_hotels["lat"], errors="coerce")
@@ -60,8 +76,8 @@ def generer_carte_hotels(dataframes: dict[str, pd.DataFrame]) -> folium.Map | No
         popup_content = f"""
         <b>{nom}</b><br>
         {etoiles} étoiles<br>
-        📍 {pays}
-        <b> {visiteurs}</b> visteurs
+        📍 {pays}<br>
+        <b>{visiteurs}</b> visiteurs
         """
         folium.Marker(
             location=[row["lat"], row["lon"]],
