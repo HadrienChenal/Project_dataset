@@ -179,7 +179,20 @@ Nous avons une architecture classique :
 |-- video.mp4
 </pre></div>
 
-Décomposition : 
+## Décomposition : 
+### Racine du projet 
+
+- .gitignore : Ce fichier permet d'exclure certains dossiers/fichiers temporaires.
+- config.py : Configuration principal. Il regroupe toutes les constantes globales du projet.
+- requirements.txt : Liste de package Python nécessaire au bon fonctionnement du projet. Il garantit que l'environnement possède toutes les dépendances adéquates.
+- images : Dossier regroupant les images pour le README.
+- video.mp4 : Video de démonstration du dashboard.
+- main.py : Script principal permettant de lancer le dashboard.
+
+### Dossier data : les données du projet
+
+- raw : Dossier comportant les tableaux CSV récupérées depuis Kaggle.
+- cleaned : Dossier comportant les tableaux nettoyés CSV. 
 
 
 *(Décris ici l’architecture du code, les dossiers principaux, et la procédure pour ajouter une page ou un graphique au dashboard.)*
