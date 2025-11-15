@@ -1,5 +1,17 @@
-Ce projet propose un dashboard interactif construit à partir du dataset public https://www.kaggle.com/datasets/alperenmyung/international-hotel-booking-analytics.
+<h1 align="center">International Hotel Booking Analytics</h1>
+
+
+<p>Ce projet propose un dashboard interactif construit à partir du dataset public https://www.kaggle.com/datasets/alperenmyung/international-hotel-booking-analytics.</p> 
 L’objectif est d’explorer et de visualiser les tendances du secteur hôtelier international à travers des données réelles sur les hôtels et leurs utilisateurs.
+<br><br>
+
+![Texte alternatif](images/voyage.jpg)
+
+# Pourquoi ce projet ? 
+
+Le tourisme joue un rôle clé dans l’économie mondiale et dans la vitalité des territoires. Grâce à l’analyse des données de réservations hôtelières internationales, ce projet aide à mieux comprendre les habitudes de voyage, les périodes de forte affluence et les comportements des clients. Ces analyses contribuent à un tourisme plus durable et plus responsable, au bénéfice des voyageurs et des communautés locales.
+<br><br>
+De plus, les voyageurs aujourd'hui recherchent avant tout une expérience de luxe, alliant confort, service de qualité et moments mémorables. Ils souhaitent vivre des séjours uniques, conçus pour répondre à leurs envies et valoriser pleinement leur temps libre. Cette quête d'exclusivité fait du tourisme haut de gamme un pilier important de l'économie mondiale.
 
 # User Guide
 
@@ -7,11 +19,12 @@ L’objectif est d’explorer et de visualiser les tendances du secteur hôtelie
 
 
 # Data
+
 ## Présentation des données
 
 Le dataset public regroupe des informations sur des hôtels internationaux et leurs clients. Il s'agit d'une base relationnelle composée de trois fichiers CSV : 
 
-### hotels.csv :  
+### hotels.csv :
 Ce fichier recense les données de 25 hôtels cinq étoiles localisées sur l'ensemble des continents. Chaque hôtel est identifié par un ID unique et accompagné de plusieurs notes de base évaluant dofférents critères de qualité : 
 
  | **Nom du paramètre** | **Description**                                                                                                                                      |
@@ -31,7 +44,7 @@ Ce fichier recense les données de 25 hôtels cinq étoiles localisées sur l'en
 | value_for_money_base | Note moyenne de base sur le rapport qualité/prix (sur 10).                                                                                       |
 
 ### users.csv :
-Ce fichier fournit des données démographiques sur les utilisateurs ayant séjourné dans les hôtels (âge, genre, pays,...).
+Ce fichier fournit des données démographiques sur les utilisateurs ayant séjourné dans les hôtels (âge, genre, pays,...) :
 
  | **Nom du paramètre** | **Description**                                                                                                                                      |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -44,7 +57,7 @@ Ce fichier fournit des données démographiques sur les utilisateurs ayant séjo
    
                                                                                      
 ### reviews.csv :
-Ce fichiers fournit les avis et notes des clients selon l'hôtel auquel ils ont séjourné. Il est donc à la fois lié à users.csv et hotels.csv pour effectuer des analyses croisées. 
+Ce fichiers fournit les avis et notes des clients selon l'hôtel auquel ils ont séjourné. Il est donc à la fois lié à users.csv et hotels.csv pour effectuer des analyses croisées :
 
  | **Nom du paramètre** | **Description**                                                                                                                                      |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -121,11 +134,49 @@ get_data.py a pour objectif de télécharger le dataset, puis copier tous les fi
 
 # Developer Guide
 
-*(Décris ici l’architecture du code, les dossiers principaux, et la procédure pour ajouter une page ou un graphique au dashboard.)*
 Nous avons une architecture classique : 
 
-(insérer image arcitecture)
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Project_data
+|-- .gitignore
+|-- config.py                                   # fichier de configuration
+|-- main.py                                     # fichier principal permettant de lancer le dashboard
+|-- requirements.txt                            # liste des packages additionnels requis
+|-- README.md
+|-- data                                        # les données
+│   |-- cleaned
+│   │   |-- cleaned_hotels.csv
+│   │   |-- cleaned_reviews.csv
+│   │   |-- cleaned_users.csv
+│   |-- raw
+│   │   |-- hotels.csv
+│   │   |-- reviews.csv
+│   │   |-- users.csv
+|-- images                                      # images utilisées dans le README
+|-- src                                         # le code source du dashboard
+|   |-- components                              # les composants du dashboard
+|   |   |-- __init__.py
+|   |   |-- histogrammes.py
+|   |   |-- cartes.py
+|   |   |-- footer.py
+|   |   |-- header.py
+|   |   |-- navbar.py
+|   |-- pages                                   # les pages du dashboard
+|   |   |-- __init__.py
+|   |   |-- geographie.py
+|   |   |-- home.py
+|   |   |-- analyse.py
+|   |-- utils                                   # les fonctions utilitaires
+|   |   |-- __init__.py
+|   |   |-- common_functions.py
+|   |   |-- get_data.py                         # script de récupération des données
+|   |   |-- clean_data.py                       # script de nettoyage des données
+|-- video.mp4
+</pre></div>
 
+Décomposition : 
+
+
+*(Décris ici l’architecture du code, les dossiers principaux, et la procédure pour ajouter une page ou un graphique au dashboard.)*
 
 # Rapport d'analyse
 
@@ -133,7 +184,11 @@ Nous avons une architecture classique :
 
 *(Présente ici les principales conclusions issues de ton analyse de données : tendances, corrélations, résultats clés, etc.)*
 
+# Point d'amélioration / Perspectives d'avenir
+
 
 # Copyright
 
 *(Indique ici que le code est original, éventuellement sous quelle licence il est publié, et à qui il appartient.)*
+
+@ architecture : modèle prof

@@ -4,8 +4,6 @@ Utilise Plotly pour générer des graphiques interactifs.
 """
 import pandas as pd
 import plotly.graph_objects as go
-import numpy as np
-
 
 def tracer_histogramme_notes(dataframes: dict[str, pd.DataFrame]) -> go.Figure | None:
     """
@@ -135,3 +133,47 @@ def tracer_histogramme_proprete(dataframes: dict[str, pd.DataFrame]) -> go.Figur
 
     return fig
 
+def tracer_histogramme_departures(dataframes: dict[str, pd.DataFrame]) -> go.Figure | None:
+    """
+    Trace un histogramme interactif du nombre de départs par mois.
+    Retourne une Figure Plotly.
+    """
+    df_bookings = dataframes.get("bookings.csv")
+    if df_bookings is None:
+        print("Erreur : le DataFrame 'bookings.csv' est introuvable.")
+        return None
+
+    if "departure_date" not in df_bookings.columns:
+        print("Erreur : la colonne 'departure_date' est absente du fichier bookings.csv.")
+        return None
+
+    df_bookings["departure_date"] = pd.to_datetime(df_bookings["departure_date"], errors="coerce")
+    df_bookings = df_bookings.dropna(subset=["departure_date"])
+    
+    if df_bookings.empty:
+        print("Aucune donnée valide pour departure_date.")
+        return None
+
+    df_bookings["departure_month"] = df_bookings["departure_date"].dt.to_period("M").dt.to_timestamp()
+    departures_per_month = df_bookings.groupby("departure_month").size().reset_index(name="num_departures")
+
+    # Création de l'histogramme Plotly
+    fig = go.Figure(data=[
+        go.Bar(
+            x=departures_per_month["departure_month"],
+            y=departures_per_month["num_departures"],
+            marker=dict(color="green", line=dict(color="darkgreen", width=1)),
+            name="Nombre de départs"
+        )
+    ])
+
+    fig.update_layout(
+        title="Nombre de départs par mois",
+        xaxis_title="Mois de départ",
+        yaxis_title="Nombre de départs",
+        hovermode="x unified",
+        template="plotly_white",
+        height=500
+    )
+
+    return fig
