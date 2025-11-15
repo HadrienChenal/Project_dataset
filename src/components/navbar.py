@@ -24,7 +24,7 @@ def create_navbar():
             'backgroundColor': "#ffffff",
             'borderBottom': '1px solid #ddd',
             'display': 'flex',
-            'justifyContent': 'center',  # <-- Centrage horizontal
+            'justifyContent': 'center',
             'alignItems': 'center',
             'fontFamily': "'Poppins', sans-serif",
             'gap': '20px'

@@ -20,8 +20,7 @@ from src.components.header import create_header
 from src.components.navbar import create_navbar
 from src.components.footer import create_footer
 from src.pages import home
-from src.utils.get_data import charger_csvs
-from src.utils.common_functions import RAW_DATA_PATH
+from src.utils.get_data import charger_csvs, RAW_DATA_PATH
 
 # ---------------------------
 # Chargement des données
