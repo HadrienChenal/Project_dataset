@@ -404,6 +404,7 @@ Avec plus de temps et de focalisation, plusieurs axes pourraient être explorée
 - Aussi réaliser des analyses croisées plus poussées : faire un classement des hôtels préférés des utilisateurs, voir quels sont les critères les plus importants pour un hôtel de luxe, voir quels sont les périodes de l'année où les voyageurs partent le plus,....
 
 # Copyright
+Ecrit par Rayan, Hadrien et Alexandre
 
 Dans le cadre de ce projet, nous avons eu recours à des IA génératives intégrées à nos fichiers de travail, pour nous assister dans le développement. Même si certaines portions du code ont été générées automatiquement, la majeure partie a été écrite par nous-mêmes.
 
