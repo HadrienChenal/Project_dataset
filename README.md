@@ -341,7 +341,7 @@ Tout d'abord, nous avons réalisé 2 cartes : une représentant les lieux où so
 
 ![Cartes_hotels](images/cartes_hotels.png)
 
-![Cartes_users](images/cartes_users.png)
+![Cartes_users](images/carte_users.png)
 
 
 --> On remarque alors une forte concentration des hôtels riches dans l'Ouest de l'Europe et en Asie de l'Est.
@@ -354,6 +354,22 @@ On peut expliquer cela pour plusieurs raisons :
 - Egalement la curiosité culturelle peut jour : dans des pays comme l'Asie ou le Moyen-Orient, les clients recherchent parfois un dépaysement, une envie de changer d'envrionnement culturel, afin de garder des souvenirs. Cela est beaucoup voulu pour ceux vivant des sociétés déjà 'technologiques', de désirer une culture plus calme et exotique.
 
 Si on cherche maintenant sur la qualité des hôtels : nous avons tracé beaucoup d'histogrammes regroupant les notes que donnent les clients sur différents services : 
+
+**Exemple**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 (Mettre histogrammes, maps, ....) 
 
 *(Présente ici les principales conclusions issues de ton analyse de données : tendances, corrélations, résultats clés, etc.)*
