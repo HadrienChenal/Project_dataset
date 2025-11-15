@@ -4,6 +4,7 @@ Utilise Plotly pour générer des graphiques interactifs.
 """
 import pandas as pd
 import plotly.graph_objects as go
+import numpy as np
 
 def tracer_histogramme_notes(dataframes: dict[str, pd.DataFrame]) -> go.Figure | None:
     """
@@ -133,44 +134,111 @@ def tracer_histogramme_proprete(dataframes: dict[str, pd.DataFrame]) -> go.Figur
 
     return fig
 
-def tracer_histogramme_departures(dataframes: dict[str, pd.DataFrame]) -> go.Figure | None:
+# ======= NOUVELLES FONCTIONS D'HISTOGRAMMES =======
+
+def tracer_histogramme_confort(dataframes: dict[str, pd.DataFrame]) -> None:
     """
-    Trace un histogramme interactif du nombre de départs par mois.
-    Retourne une Figure Plotly.
+    Trace un histogramme de la répartition des notes de confort des hôtels.
     """
-    df_bookings = dataframes.get("bookings.csv")
-    if df_bookings is None:
-        print("Erreur : le DataFrame 'bookings.csv' est introuvable.")
+    df_reviews = dataframes.get("reviews.csv")
+    if df_reviews is None:
+        print("Erreur : le DataFrame 'reviews.csv' est introuvable.")
+        return
+
+    df_reviews["score_comfort"] = pd.to_numeric(df_reviews["score_comfort"], errors="coerce")
+    df_reviews = df_reviews.dropna(subset=["score_comfort"])
+    if df_reviews.empty:
+        print("Aucune valeur valide pour 'score_comfort'.")
         return None
 
-    if "departure_date" not in df_bookings.columns:
-        print("Erreur : la colonne 'departure_date' est absente du fichier bookings.csv.")
-        return None
-
-    df_bookings["departure_date"] = pd.to_datetime(df_bookings["departure_date"], errors="coerce")
-    df_bookings = df_bookings.dropna(subset=["departure_date"])
-    
-    if df_bookings.empty:
-        print("Aucune donnée valide pour departure_date.")
-        return None
-
-    df_bookings["departure_month"] = df_bookings["departure_date"].dt.to_period("M").dt.to_timestamp()
-    departures_per_month = df_bookings.groupby("departure_month").size().reset_index(name="num_departures")
-
-    # Création de l'histogramme Plotly
     fig = go.Figure(data=[
-        go.Bar(
-            x=departures_per_month["departure_month"],
-            y=departures_per_month["num_departures"],
-            marker=dict(color="green", line=dict(color="darkgreen", width=1)),
-            name="Nombre de départs"
+        go.Histogram(
+            x=df_reviews["score_comfort"],
+            nbinsx=20,
+            marker=dict(color="mediumpurple", line=dict(color="black", width=1)),
+            opacity=0.75,
+            name="Nombre de clients"
         )
     ])
 
     fig.update_layout(
-        title="Nombre de départs par mois",
-        xaxis_title="Mois de départ",
-        yaxis_title="Nombre de départs",
+        title="Répartition des notes de confort",
+        xaxis_title="Score confort",
+        yaxis_title="Nombre de clients",
+        hovermode="x unified",
+        template="plotly_white",
+        height=500
+    )
+
+    return fig
+
+
+def tracer_histogramme_installations(dataframes: dict[str, pd.DataFrame]) -> None:
+    """
+    Trace un histogramme de la répartition des notes d'installations.
+    """
+    df_reviews = dataframes.get("reviews.csv")
+    if df_reviews is None:
+        print("Erreur : le DataFrame 'reviews.csv' est introuvable.")
+        return
+
+    df_reviews["score_facilities"] = pd.to_numeric(df_reviews["score_facilities"], errors="coerce")
+    df_reviews = df_reviews.dropna(subset=["score_facilities"])
+    if df_reviews.empty:
+        print("Aucune valeur valide pour 'score_facilities'.")
+        return None
+
+    fig = go.Figure(data=[
+        go.Histogram(
+            x=df_reviews["score_facilities"],
+            nbinsx=20,
+            marker=dict(color="lightseagreen", line=dict(color="black", width=1)),
+            opacity=0.75,
+            name="Nombre de clients"
+        )
+    ])
+
+    fig.update_layout(
+        title="Répartition des notes des installations",
+        xaxis_title="Score installations",
+        yaxis_title="Nombre de clients",
+        hovermode="x unified",
+        template="plotly_white",
+        height=500
+    )
+
+    return fig
+
+
+def tracer_histogramme_emplacement(dataframes: dict[str, pd.DataFrame]) -> None:
+    """
+    Trace un histogramme de la répartition des notes d'emplacement.
+    """
+    df_reviews = dataframes.get("reviews.csv")
+    if df_reviews is None:
+        print("Erreur : le DataFrame 'reviews.csv' est introuvable.")
+        return
+
+    df_reviews["score_location"] = pd.to_numeric(df_reviews["score_location"], errors="coerce")
+    df_reviews = df_reviews.dropna(subset=["score_location"])
+    if df_reviews.empty:
+        print("Aucune valeur valide pour 'score_location'.")
+        return None
+
+    fig = go.Figure(data=[
+        go.Histogram(
+            x=df_reviews["score_location"],
+            nbinsx=20,
+            marker=dict(color="coral", line=dict(color="darkred", width=1)),
+            opacity=0.75,
+            name="Nombre de clients"
+        )
+    ])
+
+    fig.update_layout(
+        title="Répartition des notes d'emplacement",
+        xaxis_title="Score emplacement",
+        yaxis_title="Nombre de clients",
         hovermode="x unified",
         template="plotly_white",
         height=500
