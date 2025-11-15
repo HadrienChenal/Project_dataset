@@ -5,7 +5,6 @@ Utilise Plotly pour générer des graphiques interactifs.
 import pandas as pd
 import plotly.graph_objects as go
 
-
 def tracer_histogramme_notes(dataframes: dict[str, pd.DataFrame]) -> go.Figure | None:
     """
     Trace un histogramme interactif de la répartition des notes globales des hôtels.
