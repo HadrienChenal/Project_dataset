@@ -355,9 +355,18 @@ On peut expliquer cela pour plusieurs raisons :
 
 Si on cherche maintenant sur la qualité des hôtels : nous avons tracé beaucoup d'histogrammes regroupant les notes que donnent les clients sur différents services : 
 
-**Exemple**
+**Exemples**
 
 
+![Histogramme Notes Hotels](outputs/figures/hist_scores_base.png)
+
+Ce graphique nous donne le score original globale que les hôtels ont.
+
+![Histogramme Notes Hotels des clients](outputs/figures/hist_scores_globales.png)
+
+Ce graphique nous montre le score global que les clients ont donné 
+
+![Histogramme score propreté](outputs/figures/hist_proprete.png)
 
 
 
